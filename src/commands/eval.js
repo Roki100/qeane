@@ -1,6 +1,9 @@
 const dual = require('@tafina/dualfm2')
 
-const l = dual.listeners()
+const l = dual.listeners();
+const lp = dual.listeners_peak();
+const now = dual.nowplaying();
+const artist = dual.artist();
 
 module.exports = {
   name: 'eval',
