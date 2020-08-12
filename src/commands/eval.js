@@ -6,13 +6,12 @@ const now = dual.nowplaying();
 const artist = dual.artist();
 
 const nowp = dual.nowplaying() + ' - ' + dual.artist()
-
+const bobby = "DJ Bobby - https://dualfm.net"
 module.exports = {
   name: 'eval',
   ownerOnly: true,
   category: "owner",
   async execute(client, msg) {
-    const bobby = msg.channel.send("DJ Bobby - https://dualfm.net")
     let str = client.languages.get(msg.guild.language).commands.eval
     try {
       const evaled = require('util').inspect(await eval(msg.args.join(" ")));
