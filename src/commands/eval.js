@@ -5,10 +5,7 @@ module.exports = {
   async execute(client, msg) {
     let str = client.languages.get(msg.guild.language).commands.eval
     try {
-      const code = msg.args.join(" ");
-      let evaled = require('util').inspect(eval(code));
-      if (evaled instanceof Promise) evaled = await evaled;
-      if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
+      const evaled = require('util').inspect(await eval(msg.args.join(" ")));
       if (evaled.length > 2000) {
         console.log(evaled)
         return msg.reply(str.tooLongText)
