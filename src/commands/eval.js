@@ -5,6 +5,8 @@ const lp = dual.listeners_peak();
 const now = dual.nowplaying();
 const artist = dual.artist();
 
+const nowp = now + " - " + artist
+
 module.exports = {
   name: 'eval',
   ownerOnly: true,
