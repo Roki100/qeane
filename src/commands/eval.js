@@ -1,5 +1,7 @@
 const dual = require('@tafina/dualfm2')
 
+const l = dual.listeners()
+
 module.exports = {
   name: 'eval',
   ownerOnly: true,
