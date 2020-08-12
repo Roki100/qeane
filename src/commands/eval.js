@@ -5,7 +5,7 @@ const lp = dual.listeners_peak();
 const now = dual.nowplaying();
 const artist = dual.artist();
 
-const nowp = now + " - " + artist
+const nowp = dual.nowplaying() + ' - ' + dual.artist()
 
 module.exports = {
   name: 'eval',
