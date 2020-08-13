@@ -6,6 +6,7 @@ module.exports = {
     category: "music",
     async execute(client, msg) {
 
+        return msg.channel.send('Coming soon! OwO. \ndualfm.net')
         // const artist = client.languages.get(msg.guild.language).commands.dual.artist
         // const song = client.languages.get(msg.guild.language).commands.dual.song
         // const presenter = client.languages.get(msg.guild.language).commands.dual.presenter
@@ -14,7 +15,7 @@ module.exports = {
         fetch("https://api.dualfm.net/stats").then(res => res.json()).then(res => {
             let fields = [
                 { name: 'Song', value: `${res.now.song}`, inline: true },
-                { name: 'Artisit', value: `${res.now.artist}`, inline: true },
+                { name: 'Artist', value: `${res.now.artist}`, inline: true },
                 { name: 'Presenter', value: `${res.presenter.username}`, inline: true },
                 { name: 'Listeners', value: `${res.listeners.current}`, inline: true }
             ]
