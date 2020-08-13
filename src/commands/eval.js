@@ -20,7 +20,7 @@ module.exports = {
         var evaled = await eval(msg.args.join(" "));
       }
       if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
-      msg.reply(evaled, { code: "js" })
+      msg.reply(evaled)
 
     } catch (err) {
       console.log(err)
