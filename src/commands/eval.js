@@ -15,12 +15,15 @@ module.exports = {
     let str = client.languages.get(msg.guild.language).commands.eval
     try {
       if (msg.args[0] === "inspect") {
-        var evaled = require('util').inspect(await eval(msg.args.slice(1).join(" ")));
+        let evaled = require('util').inspect(await eval(msg.args.slice(1).join(" ")));
+        if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
+        msg.reply(eevaled, { code: "js" })
       } else {
-        var evaled = await eval(msg.args.join(" "));
+        let evaled = await eval(msg.args.join(" "));
+        if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
+        msg.reply(evaled)
       }
-      if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
-      msg.reply(evaled.startsWith("```js") ? evaled : evaled, { code: "js" })
+
 
     } catch (err) {
       console.log(err)
