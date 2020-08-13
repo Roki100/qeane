@@ -4,15 +4,20 @@
 module.exports = function () {
     /**
      * Slices a string every x
-     * @param {Number} num - The number of time to slice the string
+     * @param {Number} ChunkBy - The number of time to slice the string
      * @returns {Array} an array
      */
-    String.prototype.sliceEvery = function sliceEvery(num) {
-        if (!num || isNaN(num)) {
+    String.prototype.sliceEvery = function (ChunkBy) {
+        if (!ChunkBy || isNaN(ChunkBy)) {
             throw new TypeError("No number provided");
         }
-       return this.match(new RegExp(`.{${parseInt(num)}}`, "g"));
-      }
+        let ChunksNum = Math.ceil(this.length / parseInt(ChunkBy));
+        let chunks = new Array(ChunksNum);
+        for (var i = 0, o = 0; i < ChunksNum; ++i, o += parseInt(ChunkBy)) {
+            chunks[i] = this.substr(o, parseInt(ChunkBy));
+        }
+        return chunks;
+    }
 
-      console.log("==SETUP== sliceEvery succesfully loaded!")
+    console.log("==SETUP== sliceEvery succesfully loaded!")
 }
