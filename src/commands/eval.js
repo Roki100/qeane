@@ -15,7 +15,7 @@ module.exports = {
     let str = client.languages.get(msg.guild.language).commands.eval
     try {
       if (msg.args[0] === "inspect") {
-        var evaled = require('util').inspect(await eval(msg.args.slicd(1).join(" ")));
+        var evaled = require('util').inspect(await eval(msg.args.slice(1).join(" ")));
       } else {
         var evaled = await eval(msg.args.join(" "));
       }
