@@ -9,12 +9,9 @@ module.exports = {
       let evaled = require('util').inspect(eval(code));
       if (evaled instanceof Promise) evaled = await evaled;
       if (typeof evaled !== "string") evaled = require("util").inspect(evaled);
-      if (evaled.length > 2000) {
-        console.log(evaled)
-        return msg.reply(str.tooLongText)
-      } else {
-        msg.reply(evaled, { code: "js" })
-      };
+      if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
+      msg.reply(evaled, { code: "js" })
+
     } catch (err) {
       console.log(err)
       msg.reply(err)
