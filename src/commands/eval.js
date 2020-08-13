@@ -14,7 +14,11 @@ module.exports = {
   async execute(client, msg) {
     let str = client.languages.get(msg.guild.language).commands.eval
     try {
-      let evaled = require('util').inspect(await eval(msg.args.join(" ")));
+      if (msg.args[0] === "inspect") {
+        var evaled = require('util').inspect(await eval(msg.args.slicd(1).join(" ")));
+      } else {
+        var evaled = await eval(msg.args.join(" "));
+      }
       if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
       msg.reply(evaled, { code: "js" })
 
