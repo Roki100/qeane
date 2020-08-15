@@ -1,7 +1,7 @@
 module.exports = {
     name: 'purge',
     category: "moderation",
-    async execute(_client, msg) {
+    async execute(client, msg) {
         let str = client.languages.get(msg.guild.language).commands.purge
         if (!msg.member.permissions.has("MANAGE_MESSAGES")) return msg.reply(str.noPerms)
         if (!msg.args.join(' ')) return msg.reply(str.noArgs)
