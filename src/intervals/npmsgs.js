@@ -5,6 +5,7 @@ module.exports = (client) => {
                 if (!q.songs[0].info.isStream && q.npmsg) {
                     let track = q.songs[0]
                     let musicStr = client.languages.get(q.textChannel.guild.language).music
+                    let time = client.functions.duration(track.info.length)
                     q.npmsg.edit({
                         embed: {
                             color: q.npmsg.embeds[0].color,
