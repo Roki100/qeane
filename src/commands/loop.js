@@ -11,7 +11,7 @@ module.exports = {
         if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(musicStr.notSameVc)
         let type = msg.args[0]
         let types = [str.queue, str.types.track, str.disable]
-        if (!types.includes(type.toLowerCase())) return msg.reply(strp.usage)
+        if (!types.includes(type.toLowerCase())) return msg.reply(str.usage)
         switch (msg.args[0]) {
             case str.types.queue:
                 serverQueue.loopType = 2
