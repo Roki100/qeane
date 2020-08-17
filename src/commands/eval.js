@@ -5,23 +5,17 @@ module.exports = {
   async execute(client, msg) {
     let str = client.languages.get(msg.guild.language).commands.eval
     if (!msg.args.join(" ")) return msg.reply(`${msg.author.tag}: ` + "plz send args")
+    let evaled;
     try {
-      if (msg.args[0] === "inspect") {
-        let evaled = require('util').inspect(await eval(msg.args.slice(1).join(" ")));
-        if (evaled) {
-          if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
-          if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
-        }
-        msg.reply(`${msg.author.tag}: ` + evaled, { code: "js" })
-      } else {
-        let evaled = await eval(msg.args.join(" "));
-        if (evaled) {
-          if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
-          if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
-        }
-        msg.reply(`${msg.author.tag}: ` + evaled)
-      }
+      evaled = await eval(msg.args.join(" "))
+      if (evaled) {
+        if (evaled.length > 1950) evaled = require('util').inspect(await eval(msg.args.join(" ")));
+        if (evaled.length > 1950) evaled = evaled.sliceEvery(1950)[0]
+        if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
 
+      }
+      msg.reply(`${msg.author.tag}: ` + evaled, { code: "js" })
+      msg.reply(`${msg.author.tag}: ` + evaled)
 
     } catch (err) {
       console.log(err)
