@@ -9,7 +9,7 @@ module.exports = {
     try {
       evaled = await eval(msg.args.join(" "))
       if (evaled) {
-        if (evaled.length > 1950) evaled = require('util').inspect(await eval(msg.args.join(" ")));
+        if (evaled.length > 1950) evaled = require('util').inspect(evaled);
         if (evaled.length > 1950) evaled = evaled.sliceEvery(1950)[0]
         if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
 
