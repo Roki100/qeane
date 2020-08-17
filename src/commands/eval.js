@@ -15,8 +15,6 @@ module.exports = {
 
       }
       msg.reply(`${msg.author.tag}: ` + evaled, { code: "js" })
-      msg.reply(`${msg.author.tag}: ` + evaled)
-
     } catch (err) {
       console.log(err)
       msg.reply(`${msg.author.tag}: ` + err)
