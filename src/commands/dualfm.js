@@ -5,7 +5,7 @@ module.exports = {
     name: "dualfm",
     category: "music",
     async execute(client, msg) {
-        fetch("https://api.dualfm.net/stats").then(res => res.json()).then(res => {
+        fetch("https://tafina.xyz/api/dualfm").then(res => res.json()).then(res => {
             let fields = [
                 { name: 'Song', value: `${res.now.song}`, inline: true },
                 { name: 'Artist', value: `${res.now.artist}`, inline: true },
