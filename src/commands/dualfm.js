@@ -5,13 +5,6 @@ module.exports = {
     name: "dualfm",
     category: "music",
     async execute(client, msg) {
-
-        return msg.channel.send('Coming soon! OwO. \ndualfm.net')
-        // const artist = client.languages.get(msg.guild.language).commands.dual.artist
-        // const song = client.languages.get(msg.guild.language).commands.dual.song
-        // const presenter = client.languages.get(msg.guild.language).commands.dual.presenter
-        // const listener_peak = client.languages.get(msg.guild.language).commands.dual.listenerpeak
-        // const listeners = client.languages.get(msg.guild.language).commands.dual.listeners
         fetch("https://api.dualfm.net/stats").then(res => res.json()).then(res => {
             let fields = [
                 { name: 'Song', value: `${res.now.song}`, inline: true },
@@ -24,7 +17,7 @@ module.exports = {
                 .addFields(fields)
                 .setColor('#cf6fcb')
 
-            msg.reply(`${msg.author.tag}: ` + "", embed)
+            msg.reply("", embed)
 
         });
     }
