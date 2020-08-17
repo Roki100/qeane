@@ -20,7 +20,6 @@ module.exports = {
         }
         msg.reply(`${msg.author.tag}: ` + evaled)
       }
-      z
 
     } catch (err) {
       console.log(err)
