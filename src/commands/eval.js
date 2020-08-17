@@ -3,7 +3,6 @@ module.exports = {
   ownerOnly: true,
   category: "owner",
   async execute(client, msg) {
-    let str = client.languages.get(msg.guild.language).commands.eval
     if (!msg.args.join(" ")) return msg.reply(`${msg.author.tag}: ` + "plz send args")
     let evaled;
     try {
@@ -12,10 +11,10 @@ module.exports = {
       if (evaled.length > 1950) evaled = evaled.sliceEvery(1950)[0]
       if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
 
-      msg.reply(`${msg.author.tag}: ` + `\`\`\`js\n${evaled}\`\`\``)
+      msg.reply(evaled, { code: "js" })
     } catch (err) {
       console.log(err)
-      msg.reply(`${msg.author.tag}: ` + `\`\`\`js\n${err}\`\`\``)
+      msg.reply(`${msg.author.tag}: ` + err)
     };
 
   },
