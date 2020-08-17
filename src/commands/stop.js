@@ -5,10 +5,10 @@ module.exports = {
         const str = client.languages.get(msg.guild.language).commands.stop
         const musicStr = client.languages.get(msg.guild.language).music
         let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return msg.reply(musicStr.queueEmpty)
-        if (!msg.member.voice.channel) return msg.reply(musicStr.noVc)
+        if (!serverQueue) return msg.reply(`${msg.author.tag} ` + musicStr.queueEmpty)
+        if (!msg.member.voice.channel) return msg.reply(`${msg.author.tag} ` + musicStr.noVc)
         let vc = await msg.member.voice.channel.fetch()
-        if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(musicStr.notSameVc)
+        if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag} ` + musicStr.notSameVc)
         serverQueue.songs = []
         serverQueue.player.stopTrack()
     }

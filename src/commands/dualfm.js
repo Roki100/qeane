@@ -24,7 +24,7 @@ module.exports = {
                 .addFields(fields)
                 .setColor('#cf6fcb')
 
-            msg.reply("", embed)
+            msg.reply(`${msg.author.tag} ` + "", embed)
 
         });
     }

@@ -23,12 +23,12 @@ module.exports = {
         let f = fields[i]
         if (args === f.name.toLowerCase()) {
 
-          return msg.reply("", { embed: { title: f.name, description: f.value } })
+          return msg.reply(`${msg.author.tag} ` + "", { embed: { title: f.name, description: f.value } })
 
         }
       }
     }
-    msg.reply("", {
+    msg.reply(`${msg.author.tag} ` + "", {
       embed: {
         title: str.info,
         thumbnail: { url: guild.iconURL({ dynamic: true }) },

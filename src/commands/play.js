@@ -5,12 +5,12 @@ module.exports = {
         const str = client.languages.get(msg.guild.language).commands.play
         const musicStr = client.languages.get(msg.guild.language).music
         const { channel } = msg.member.voice
-        if (!channel) return msg.reply(musicStr.noVc)
+        if (!channel) return msg.reply(`${msg.author.tag} ` + musicStr.noVc)
         await channel.fetch()
         if (client.queue.get(msg.guild.id)) {
-            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return msg.reply(musicStr.notSameVc)
+            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return msg.reply(`${msg.author.tag} ` + musicStr.notSameVc)
         }
-        if (!msg.args[0]) return msg.reply(str.noSong)
+        if (!msg.args[0]) return msg.reply(`${msg.author.tag} ` + str.noSong)
         const node = client.shoukaku.getNode();
         let data;
         if (require('is-a-url')(msg.args.join(' '))) {
@@ -18,13 +18,13 @@ module.exports = {
         } else {
             data = await node.rest.resolve(msg.args.join(' '), "youtube")
         }
-        if (!data) return msg.reply(str.noSongFound);
+        if (!data) return msg.reply(`${msg.author.tag} ` + str.noSongFound);
         if (client.shoukaku.getPlayer(msg.guild.id)) {
             let serverQueue = client.queue.get(msg.guild.id)
             switch (data.type) {
                 case "PLAYLIST":
                     serverQueue.songs.push(...data.tracks)
-                    msg.reply("", {
+                    msg.reply(`${msg.author.tag} ` + "", {
                         embed: {
                             color: client.functions.randomColor(),
                             title: str.playlist.added,
@@ -39,7 +39,7 @@ module.exports = {
                     serverQueue.songs.push(data.tracks[0])
                     let track = data.tracks[0]
                     time = client.functions.duration(track.info.length)
-                    msg.reply("", {
+                    msg.reply(`${msg.author.tag} ` + "", {
                         embed: {
                             color: client.functions.randomColor(),
                             title: str.track.added,
@@ -72,7 +72,7 @@ module.exports = {
             switch (data.type) {
                 case "PLAYLIST":
                     serverQueue.songs.push(...data.tracks)
-                    msg.reply("", {
+                    msg.reply(`${msg.author.tag} ` + "", {
                         embed: {
                             color: client.functions.randomColor(),
                             title: str.playlist.added,
@@ -87,7 +87,7 @@ module.exports = {
                     serverQueue.songs.push(data.tracks[0])
                     let track = data.tracks[0]
                     time = client.functions.duration(track.info.length)
-                    msg.reply("", {
+                    msg.reply(`${msg.author.tag} ` + "", {
                         embed: {
                             color: client.functions.randomColor(),
                             title: str.track.added,

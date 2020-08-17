@@ -15,7 +15,7 @@ module.exports = {
   category: "info",
   async execute(client, msg) {
     let str = client.languages.get(msg.guild.language).commands.stats
-    let m = await msg.reply("", { embed: { description: str.collecting } })
+    let m = await msg.reply(`${msg.author.tag} ` + "", { embed: { description: str.collecting } })
     let totalSeconds = (client.uptime / 1000);
     let days = Math.floor(totalSeconds / 86400);
     let hours = Math.floor(totalSeconds / 3600);

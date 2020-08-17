@@ -11,7 +11,7 @@ module.exports = {
             member = msg.member
         }
 
-        if (!member) return msg.reply(str.usage)
+        if (!member) return msg.reply(`${msg.author.tag} ` + str.usage)
         let user = member.user
         user = await client.users.fetch({ id: user.id })
         let badges = require('../functions/badges')(member)
@@ -37,11 +37,11 @@ module.exports = {
                 let f = fields[i]
                 if (args === f.name.toLowerCase()) {
                     if (args === str.roles) {
-                        return msg.reply("", { embed: { title: f.name, description: roles.length > 2000 ? str.tooMuchRoles2 : roles } })
-                    } else { return msg.reply("", { embed: { title: f.name, description: f.value } }) }
+                        return msg.reply(`${msg.author.tag} ` + "", { embed: { title: f.name, description: roles.length > 2000 ? str.tooMuchRoles2 : roles } })
+                    } else { return msg.reply(`${msg.author.tag} ` + "", { embed: { title: f.name, description: f.value } }) }
                 }
             }
         }
-        msg.reply("", { embed: { title: str.info, fields: fields, thumbnail: { url: member.user.avatarURL({ size: 2048, format: "png" }) } } })
+        msg.reply(`${msg.author.tag} ` + "", { embed: { title: str.info, fields: fields, thumbnail: { url: member.user.avatarURL({ size: 2048, format: "png" }) } } })
     }
 }

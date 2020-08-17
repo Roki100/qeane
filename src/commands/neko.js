@@ -7,7 +7,7 @@ module.exports = {
             let title = str.heresANeko
                 .replace("{0}", msg.author.tag)
             let description = str.grabbedVia
-            msg.reply("", { embed: { image: { url: res.data.url }, title: title, description: description } })
+            msg.reply(`${msg.author.tag} ` + "", { embed: { image: { url: res.data.url }, title: title, description: description } })
         })
     }
 }
