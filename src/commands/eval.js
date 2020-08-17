@@ -11,7 +11,7 @@ module.exports = {
           if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
           if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
         }
-        msg.reply(`${msg.author.tag}: ` + evaled, { code: "js" })
+        msg.reply(evaled, { code: "js" })
       } else {
         let evaled = await eval(msg.args.join(" "));
         if (evaled) {
