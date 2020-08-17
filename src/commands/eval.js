@@ -4,14 +4,24 @@ module.exports = {
   category: "owner",
   async execute(client, msg) {
     if (!msg.args.join(" ")) return msg.reply(`${msg.author.tag}: ` + "plz send args")
-    let evaled;
     try {
-      evaled = require('util').inspect(await eval(msg.args.join(" ")))
-      if (evaled.length > 1950) evaled = require('util').inspect(evaled);
-      if (evaled.length > 1950) evaled = evaled.sliceEvery(1950)[0]
-      if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
+      if (msg.args[0] === "inspect") {
+        let evaled = require('util').inspect(await eval(msg.args.slice(1).join(" ")));
+        if (evaled) {
+          if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
+          if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
+        }
+        msg.reply(`${msg.author.tag}: ` + evaled, { code: "js" })
+      } else {
+        let evaled = await eval(msg.args.join(" "));
+        if (evaled) {
+          if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
+          if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
+        }
+        msg.reply(`${msg.author.tag}: ` + evaled)
+      }
+      z
 
-      msg.reply(evaled, { code: "js" })
     } catch (err) {
       console.log(err)
       msg.reply(`${msg.author.tag}: ` + err)
