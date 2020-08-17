@@ -7,17 +7,15 @@ module.exports = {
     if (!msg.args.join(" ")) return msg.reply(`${msg.author.tag}: ` + "plz send args")
     let evaled;
     try {
-      evaled = await eval(msg.args.join(" "))
-      if (evaled) {
-        if (evaled.length > 1950) evaled = require('util').inspect(evaled);
-        if (evaled.length > 1950) evaled = evaled.sliceEvery(1950)[0]
-        if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
+      evaled = require('util').inspect(await eval(msg.args.join(" ")))
+      if (evaled.length > 1950) evaled = require('util').inspect(evaled);
+      if (evaled.length > 1950) evaled = evaled.sliceEvery(1950)[0]
+      if (evaled.includes(client.token)) evaled = evaled.replace(client.token, "no plz, dont leak token")
 
-      }
-      msg.reply(`${msg.author.tag}: ` + evaled, { code: "js" })
+      msg.reply(`${msg.author.tag}: ` + `\`\`\`js\n${evaled}\`\`\``)
     } catch (err) {
       console.log(err)
-      msg.reply(`${msg.author.tag}: ` + err)
+      msg.reply(`${msg.author.tag}: ` + `\`\`\`js\n${err}\`\`\``)
     };
 
   },
