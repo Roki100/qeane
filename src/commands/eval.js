@@ -9,14 +9,14 @@ module.exports = {
         let evaled = require('util').inspect(await eval(msg.args.slice(1).join(" ")));
         if (evaled) {
           if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
-          if (evaled.includes(client.token)) evaled = evaled.replace(/client.token/g, "no plz, dont leak token")
+          // if (evaled.includes(client.token)) evaled = evaled.replace(/client.token/g, "no plz, dont leak token")
         }
         msg.reply(evaled, { code: "js" })
       } else {
         let evaled = await eval(msg.args.join(" "));
         if (evaled) {
           if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
-          if (evaled.includes(client.token)) evaled = evaled.replace(/client.token/g, "no plz, dont leak token")
+          // if (evaled.includes(client.token)) evaled = evaled.replace(/client.token/g, "no plz, dont leak token")
         }
         msg.reply(`${msg.author.tag}: ` + evaled)
       }
