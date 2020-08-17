@@ -8,7 +8,7 @@ module.exports = async (client, msg) => {
   }
   msg.guild.language = language
 
-  if (msg.content === `<@!${client.user.id}>`) return msg.reply(`${msg.author.tag} ` + client.languages.get(msg.guild.language).msgevent.prefix
+  if (msg.content === `<@!${client.user.id}>`) return msg.reply(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).msgevent.prefix
     .replace("{0}", prefix)
     .replace("{0}", prefix))
   if (msg.content.startsWith(`<@!${client.user.id}>`)) prefix = `<@!${client.user.id}>`
@@ -21,7 +21,7 @@ module.exports = async (client, msg) => {
     }
     if (msg.mentions.members.first()) {
       if (msg.args.includes("-d")) msg.delete()
-      let x = await msg.reply(`${msg.author.tag} ` + "", {
+      let x = await msg.reply(`${msg.author.tag}: ` + "", {
         embed: {
           description: client.db.get(`tags.${msg.guild.id}.${commandName}`),
           color: 0xe74c3c
@@ -32,7 +32,7 @@ module.exports = async (client, msg) => {
       })
     } else {
       if (msg.args.includes("-d")) msg.delete()
-      msg.reply(`${msg.author.tag} ` + "", {
+      msg.reply(`${msg.author.tag}: ` + "", {
         embed: {
           description: client.db.get(`tags.${msg.guild.id}.${commandName}`),
           color: 0xe74c3c
@@ -63,7 +63,7 @@ module.exports = async (client, msg) => {
       }
     }
 
-    msg.reply(`${msg.author.tag} ` + "", error)
+    msg.reply(`${msg.author.tag}: ` + "", error)
     console.error(err)
     client.errorWebhook.send("ERROR: " + err)
   }

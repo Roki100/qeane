@@ -10,6 +10,6 @@ module.exports = {
 
 
         msg.author.send(string)
-        msg.reply(`${msg.author.tag} ` + client.languages.get(msg.guild.language).commands.serverlist.sent);
+        msg.reply(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).commands.serverlist.sent);
     },
 } 

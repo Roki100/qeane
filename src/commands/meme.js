@@ -4,7 +4,7 @@ module.exports = {
   category: "fun",
   async execute(client, msg) {
     const meme = await client.ksoft.images.meme({ nsfw: false });
-    msg.reply(`${msg.author.tag} ` + "", {
+    msg.reply(`${msg.author.tag}: ` + "", {
       embed: {
         color: client.functions.randomColor(),
         image: { url: meme.url },

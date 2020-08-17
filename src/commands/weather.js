@@ -5,12 +5,12 @@ module.exports = {
     let str = client.languages.get(msg.guild.language).commands.weather
     const Discord = require('discord.js')
 
-    if (!msg.args.join(' ') || !msg.args[1]) return msg.reply(`${msg.author.tag} ` + str.usage)
+    if (!msg.args.join(' ') || !msg.args[1]) return msg.reply(`${msg.author.tag}: ` + str.usage)
 
     var weather = require('weather-js')
     let degreetype = msg.args[0]
     let city = msg.args.slice(1).join(' ')
-    if (!city) return msg.reply(`${msg.author.tag} ` + str.usage)
+    if (!city) return msg.reply(`${msg.author.tag}: ` + str.usage)
     weather.find({ search: city, degreeType: degreetype }, function (err, result) {
       if (err) console.log(err);
 
@@ -34,7 +34,7 @@ module.exports = {
           { name: str.hum, value: `${current.humidity}%`, inline: true }
         )
 
-      msg.reply(`${msg.author.tag} ` + "", embed);
+      msg.reply(`${msg.author.tag}: ` + "", embed);
     });
 
 

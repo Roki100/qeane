@@ -17,17 +17,17 @@ module.exports = {
       if (msg.args[0] === "inspect") {
         let evaled = require('util').inspect(await eval(msg.args.slice(1).join(" ")));
         if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
-        msg.reply(`${msg.author.tag} ` + evaled, { code: "js" })
+        msg.reply(`${msg.author.tag}: ` + evaled, { code: "js" })
       } else {
         let evaled = await eval(msg.args.join(" "));
         if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
-        msg.reply(`${msg.author.tag} ` + evaled)
+        msg.reply(`${msg.author.tag}: ` + evaled)
       }
 
 
     } catch (err) {
       console.log(err)
-      msg.reply(`${msg.author.tag} ` + err)
+      msg.reply(`${msg.author.tag}: ` + err)
     };
 
   },

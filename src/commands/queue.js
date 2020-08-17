@@ -5,7 +5,7 @@ module.exports = {
   async execute(client, msg) {
     let str = client.languages.get(msg.guild.language).commands.queue, musicStr = client.languages.get(msg.guild.language).music
     let serverQueue = client.queue.get(msg.guild.id)
-    if (!serverQueue) return msg.reply(`${msg.author.tag} ` + musicStr.queueEmpty);
+    if (!serverQueue) return msg.reply(`${msg.author.tag}: ` + musicStr.queueEmpty);
     const output = []
     for (let i = 1; i < Math.min(serverQueue.songs.length, 11); i++) {
       output[i] = [
@@ -27,6 +27,6 @@ module.exports = {
       queueemb.setFooter(str.more
         .replace("{0}", serverQueue.songs.length - 11))
     }
-    msg.reply(`${msg.author.tag} ` + "", queueemb)
+    msg.reply(`${msg.author.tag}: ` + "", queueemb)
   }
 }

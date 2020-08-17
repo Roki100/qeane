@@ -10,7 +10,7 @@ module.exports = {
       let title = client.languages.get(msg.guild.language).commands.hug.hugs
         .replace("{0}", msg.author.tag)
         .replace("{1}", member.user.tag)
-      msg.reply(`${msg.author.tag} ` + "", { embed: { image: { url: res.data.url }, title: title } })
+      msg.reply(`${msg.author.tag}: ` + "", { embed: { image: { url: res.data.url }, title: title } })
     })
   }
 }

@@ -3,6 +3,6 @@ module.exports = {
     category: "fun",
     async execute(client, msg) {
         const { url } = await client.ksoft.images.random('fox');
-        msg.reply(`${msg.author.tag} ` + "", { embed: { image: { url: url } } }); // discord.js
+        msg.reply(`${msg.author.tag}: ` + "", { embed: { image: { url: url } } }); // discord.js
     }
 }

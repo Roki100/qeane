@@ -23,7 +23,7 @@ module.exports = {
         fields.push({ name: str.setup, value: setup.join(', '), inline: true })
         fields.push({ name: str.utility, value: utility.join(', '), inline: true })
         fields.push({ name: str.links, value: `[${str.invite}](https://discord.com/api/oauth2/authorize?client_id=742670668646055967&permissions=3238918&scope=bot) | [${str.support}](https://discord.gg/nXg4Yh7) | [${str.vote}](https://top.gg/bot/742670668646055967/vote) | [${str.github}](https://github.com/lumap/qeane)` })
-        msg.reply(`${msg.author.tag} ` + "", {
+        msg.reply(`${msg.author.tag}: ` + "", {
             embed: {
                 color: client.functions.randomColor(),
                 author: {
