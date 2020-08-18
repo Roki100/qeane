@@ -22,9 +22,9 @@ module.exports = function (client) {
   })
 
   client.on('ready', async () => {
-    client.user.setActivity(`qeane help`)
+    client.user.setPresence({ status: "online", activity: { name: "high quality music~ | qeane help", type: "LISTENING" } })
     setInterval(function () {
-      client.user.setActivity(`qeane help`)
+      client.user.setPresence({ status: "online", activity: { name: "high quality music~ | qeane help", type: "LISTENING" } })
     }, 1800000);
 
     console.log("=====___==========================")
