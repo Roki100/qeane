@@ -13,7 +13,7 @@ module.exports = function () {
         }
         let ChunksNum = Math.ceil(this.length / parseInt(ChunkBy));
         let chunks = new Array(ChunksNum);
-        for (var i = 0, o = 0; i < ChunksNum; ++i, o += parseInt(ChunkBy)) {
+        for (let i = 0, o = 0; i < ChunksNum; ++i, o += parseInt(ChunkBy)) {
             chunks[i] = this.substr(o, parseInt(ChunkBy));
         }
         return chunks;

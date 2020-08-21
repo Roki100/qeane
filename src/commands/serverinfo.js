@@ -28,7 +28,7 @@ module.exports = {
         }
       }
     }
-    msg.reply(`${msg.author.tag}: ` + "", {
+    await msg.reply(`${msg.author.tag}: ` + "", {
       embed: {
         title: str.info,
         thumbnail: { url: guild.iconURL({ dynamic: true }) },

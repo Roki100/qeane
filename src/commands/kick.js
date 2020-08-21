@@ -11,10 +11,10 @@ module.exports = {
         if (!member) return msg.reply(`${msg.author.tag}: ` + str.noUser + str.usage)
         if (member.id === msg.guild.id) return msg.reply(`${msg.author.tag}: ` + str.serverOwner + str.usage)
         if (!member.kickable) return msg.reply(`${msg.author.tag}: ` + str.notKickable + str.usage)
-        member.user.send(str.youreKicked
+        await member.user.send(str.youreKicked
             .replace("{0}}", msg.guild.name)
             .replace("{1}", msg.author.tag))
-        member.kick({ reason: reason })
-        msg.reply(`${msg.author.tag}: ` + str.memberKicked)
+        await member.kick({ reason: reason })
+        await msg.reply(`${msg.author.tag}: ` + str.memberKicked)
     }
 }

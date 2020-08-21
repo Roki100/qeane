@@ -8,7 +8,7 @@ module.exports = {
       user = await msg.mentions.users.first()
     } else { user = msg.author }
     let avatar = client.functions.avatar(user)
-    msg.reply(`${msg.author.tag}: ` + "", {
+    await msg.reply(`${msg.author.tag}: ` + "", {
       embed: {
         color: client.functions.randomColor(),
         image: {

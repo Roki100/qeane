@@ -11,7 +11,7 @@ module.exports = {
         if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
         if (!msg.args.join(' ')) return msg.reply(`${msg.author.tag}: ` + str.noArgs)
         let seek = require("timestamp-to-ms")(msg.args.join(' '))
-        serverQueue.player.seekTo(seek)
-        msg.reply(`${msg.author.tag}: ` + str.success)
+        await serverQueue.player.seekTo(seek)
+        await msg.reply(`${msg.author.tag}: ` + str.success)
     }
 }

@@ -7,9 +7,7 @@ module.exports = {
   category: "owner",
   async execute(client, msg) {
     msg.reply(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).commands.restart.restarting).then(() => {
-      exec('pm2 restart Qeane', function () {
-        return;
-      });
+      exec('pm2 restart Qeane', function () {});
     });
   },
 };

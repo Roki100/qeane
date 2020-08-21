@@ -17,6 +17,6 @@ module.exports = {
             return a;
         }
         serverQueue.songs = [serverQueue.songs[0], ...shuffle(serverQueue.songs)]
-        msg.reply(`${msg.author.tag}: ` + str.success)
+        await msg.reply(`${msg.author.tag}: ` + str.success)
     }
 }

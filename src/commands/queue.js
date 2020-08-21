@@ -27,6 +27,6 @@ module.exports = {
       queueemb.setFooter(str.more
         .replace("{0}", serverQueue.songs.length - 11))
     }
-    msg.reply(`${msg.author.tag}: ` + "", queueemb)
+    await msg.reply(`${msg.author.tag}: ` + "", queueemb)
   }
 }

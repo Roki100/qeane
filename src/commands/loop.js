@@ -15,15 +15,15 @@ module.exports = {
         switch (msg.args[0]) {
             case str.types.queue:
                 serverQueue.loopType = 2
-                msg.reply(`${msg.author.tag}: ` + "The queue will now loop!")
+                await msg.reply(`${msg.author.tag}: ` + "The queue will now loop!")
                 return;
             case str.types.track:
                 serverQueue.loopType = 1
-                msg.reply(`${msg.author.tag}: ` + "The current track will now repeat!")
+                await msg.reply(`${msg.author.tag}: ` + "The current track will now repeat!")
                 return;
             case str.types.disable:
                 serverQueue.loopType = 0
-                msg.reply(`${msg.author.tag}: ` + "Loop disabled!")
+                await msg.reply(`${msg.author.tag}: ` + "Loop disabled!")
                 return;
         }
     }

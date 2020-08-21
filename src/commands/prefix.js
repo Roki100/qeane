@@ -6,7 +6,7 @@ module.exports = {
     if (!msg.member.permissions.toArray().includes("ADMINISTRATOR")) return msg.reply(`${msg.author.tag}: ` + str.noPerms);
     if (!msg.args.join(' ')) return msg.reply(`${msg.author.tag}: ` + str.noArgs)
     client.db.set("prefix." + msg.guild.id, msg.args.join(' '))
-    msg.reply(`${msg.author.tag}: ` + str.success
+    await msg.reply(`${msg.author.tag}: ` + str.success
       .replace("{0}", msg.args.join(' ')))
   }
 }

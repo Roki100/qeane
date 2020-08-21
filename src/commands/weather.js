@@ -7,7 +7,7 @@ module.exports = {
 
     if (!msg.args.join(' ') || !msg.args[1]) return msg.reply(`${msg.author.tag}: ` + str.usage)
 
-    var weather = require('weather-js')
+    let weather = require('weather-js')
     let degreetype = msg.args[0]
     let city = msg.args.slice(1).join(' ')
     if (!city) return msg.reply(`${msg.author.tag}: ` + str.usage)
@@ -16,8 +16,8 @@ module.exports = {
 
 
 
-      var current = result[0].current;
-      var location = result[0].location;
+      let current = result[0].current;
+      let location = result[0].location;
 
       const embed = new Discord.MessageEmbed()
         .setDescription(current.skytext)

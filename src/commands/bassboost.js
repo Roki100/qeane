@@ -14,6 +14,6 @@ module.exports = {
         if (gain < -8 || gain > 8) return msg.reply(`${msg.author.tag}: ` + str.invalidNumber);
         serverQueue.bassboost = gain
         await serverQueue.player.setEqualizer(client.functions.getEq(serverQueue.bassboost));
-        msg.reply(`${msg.author.tag}: ` + str.success)
+        await msg.reply(`${msg.author.tag}: ` + str.success)
     }
 }

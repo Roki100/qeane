@@ -1,9 +1,7 @@
 module.exports = (client) => {
-
-  var express = require('express');
-  var app = express();
-  var bodyParser = require('body-parser');
-
+  const express = require('express');
+  const app = express();
+  const bodyParser = require('body-parser');
   app.use(bodyParser.json());
 
   app.post('/webhooks/gad/thisisthetokenfortheghreofefdvdfvefhr4g5r41ds21vg', () => {
@@ -13,7 +11,7 @@ module.exports = (client) => {
   })
 
   app.listen(4002, function () {
-    console.log("Listening on port 3002");
+    console.log("Listening on port 4002");
   });
 
 }

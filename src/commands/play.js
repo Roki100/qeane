@@ -52,7 +52,6 @@ module.exports = {
                     }).then(msg2 => { msg2.delete({ timeout: 15000 }) })
                     break;
             }
-            return;
         } else {
             const player = await node.joinVoiceChannel({
                 guildID: msg.guild.id,

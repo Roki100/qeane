@@ -13,7 +13,7 @@ module.exports = {
         const fetched = await msg.channel.messages.fetch({
             limit: amount,
         });
-        msg.channel.bulkDelete(fetched)
+        await msg.channel.bulkDelete(fetched)
         msg.reply(`${msg.author.tag}: ` + str.success).then(m => m.delete({ timeout: 5000 }))
     },
 }

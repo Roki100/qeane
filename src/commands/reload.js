@@ -16,7 +16,7 @@ module.exports = {
         delete require.cache[require.resolve(`./${c.name}.js`)];
         client.commands.delete(c.name)
         client.commands.set(c.name, require(`./${c.name}.js`))
-        msg.reply(`${msg.author.tag}: ` + str.success
+        await msg.reply(`${msg.author.tag}: ` + str.success
             .replace("{0}", c.name))
     }
 }
