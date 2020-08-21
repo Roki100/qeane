@@ -195,6 +195,10 @@ let obj = {
         skip: "pomiń",
         stop: "stop",
         volume: "głośność",
+        invite: "invite",
+        support: "support",
+        vote: "vote",
+        github: "github"
     },
     music: {
         //these strings are used for several commands, so i put it here so you dont have to translate these strings 1k times
