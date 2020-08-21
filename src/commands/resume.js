@@ -10,7 +10,7 @@ module.exports = {
         let vc = await msg.member.voice.channel.fetch()
         if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
         if (!serverQueue.player.paused) return msg.reply(`${msg.author.tag}: ` + str.alreadyPlaying)
-        serverQueue.player.setPaused(false)
-        msg.reply(`${msg.author.tag}: ` + str.success)
+        await serverQueue.player.setPaused(false)
+        await msg.reply(`${msg.author.tag}: ` + str.success)
     }
 }

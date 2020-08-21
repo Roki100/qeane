@@ -27,12 +27,12 @@ module.exports = async (client, msg) => {
           color: 0xe74c3c
         }
       })
-      x.edit(`<@!${msg.mentions.members.first().user.id}>`, {
+      await x.edit(`<@!${msg.mentions.members.first().user.id}>`, {
         embed: x.embeds[0]
       })
     } else {
       if (msg.args.includes("-d")) msg.delete()
-      msg.reply(`${msg.author.tag}: ` + "", {
+      await msg.reply(`${msg.author.tag}: ` + "", {
         embed: {
           description: client.db.get(`tags.${msg.guild.id}.${commandName}`),
           color: 0xe74c3c
@@ -42,30 +42,27 @@ module.exports = async (client, msg) => {
   }
   let str = client.languages.get(language)
   try {
-    var c = eval(`str.commandNames.${commandName}`) || eval(`str.aliases.${commandName}`)
-  } catch {
-    return;
-  }
-  if (!c) return;
-  const command = client.commands.get(c)
-  if (command.ownerOnly) {
-    if (!client.config.ownerID.includes(msg.author.id)) return;
-  }
-  try {
-    client.logs.send(`Command ${command.name} executed in ${msg.guild.name} (${msg.guild.id}) by ${msg.author.tag} (${msg.author.id}).${msg.args[0] ? `\nArgs: ${msg.args.join(' ')}` : "\nNo args"}`)
-    await command.execute(client, msg)
-  } catch (err) {
-    let error = {
-      embed: {
-        color: client.functions.randomColor(),
-        description: client.languages.get(msg.guild.language).msgevent.error,
-        fields: [{ name: 'Error :', value: `\`\`\`js\n${err}\`\`\`` }]
-      }
+    const c = eval(`str.commandNames.${commandName}`) || eval(`str.aliases.${commandName}`)
+    if (!c) return;
+    const command = client.commands.get(c)
+    if (command.ownerOnly) {
+      if (!client.config.ownerID.includes(msg.author.id)) return;
     }
+    try {
+      client.logs.send(`Command ${command.name} executed in ${msg.guild.name} (${msg.guild.id}) by ${msg.author.tag} (${msg.author.id}).${msg.args[0] ? `\nArgs: ${msg.args.join(' ')}` : "\nNo args"}`)
+      await command.execute(client, msg)
+    } catch (err) {
+      let error = {
+        embed: {
+          color: client.functions.randomColor(),
+          description: client.languages.get(msg.guild.language).msgevent.error,
+          fields: [{ name: 'Error :', value: `\`\`\`js\n${err}\`\`\`` }]
+        }
+      }
 
-    msg.reply(`${msg.author.tag}: ` + "", error)
-    console.error(err)
-    client.errorWebhook.send("ERROR: " + err)
-  }
-
+      await msg.reply(`${msg.author.tag}: ` + "", error)
+      console.error(err)
+      client.errorWebhook.send("ERROR: " + err)
+    }
+  } catch {}
 }

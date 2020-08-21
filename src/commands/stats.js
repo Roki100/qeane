@@ -6,8 +6,7 @@ async function cpuUsage(time) {
   let elapsedCPU = process.cpuUsage(startCPU);
   let milliseconds = elapsedTime[0] * 1000 + elapsedTime[1] / 1000000;
   let timings = elapsedCPU.user / 1000 + elapsedCPU.system / 1000;
-  let percentage = 100 * timings / milliseconds;
-  return percentage;
+  return 100 * timings / milliseconds;
 }
 
 module.exports = {
@@ -33,7 +32,7 @@ module.exports = {
     `
 
 
-    m.edit("", {
+    await m.edit("", {
       embed: {
         title: str.stats,
         description: desc,

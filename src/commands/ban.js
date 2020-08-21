@@ -8,14 +8,14 @@ module.exports = {
 		if (!msg.args.join(' ')) return msg.reply(`${msg.author.tag}: ` + str.noArgs + str.usage)
 		let member = msg.mentions.members.first()
 		if (!member) {
-			return msg.reply(`${msg.author.tag}: ` + st.noUser + str.usage);
+			return msg.reply(`${msg.author.tag}: ` + str.noUser + str.usage);
 		}
 		if (member.id === msg.guild.id) return msg.reply(`${msg.author.tag}: ` + str.serverOwner + str.usage)
 		if (!member.bannable) return msg.reply(`${msg.author.tag}: ` + str.notBannable + str.usage)
-		member.user.send(str.youreBanned
+		await member.user.send(str.youreBanned
 			.replace("{0}", msg.guild.name)
 			.replace("{1}", msg.author.tag))
-		member.ban({ days: 7, reason: msg.args.slice(1).join(' ') || str.noReason })
-		msg.reply(`${msg.author.tag}: ` + str.memberBanned)
+		await member.ban({ days: 7, reason: msg.args.slice(1).join(' ') || str.noReason })
+		await msg.reply(`${msg.author.tag}: ` + str.memberBanned)
 	},
 };

@@ -8,9 +8,9 @@ module.exports = async (client) => {
         client.logs.send(`User with id ${vote.user} just voted!`)
         client.db.set(`votes.${vote.user}`, Date.now() + 43200000)
         let user = client.users.cache.get(vote.user) || await client.users.fetch(vote.user)
-        user.send("Thanks you for voting for Qeane :3")
+        await user.send("Thanks you for voting for Qeane :3")
     })
-    dbl.postStats(client.guilds.cache.size, client.options.shards[0], client.ws.shards.size);
+    await dbl.postStats(client.guilds.cache.size, client.options.shards[0], client.ws.shards.size);
     setInterval(() => {
         dbl.postStats(client.guilds.cache.size, client.options.shards[0], client.ws.shards.size);
     }, 1800000);

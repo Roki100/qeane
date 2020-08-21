@@ -42,6 +42,6 @@ module.exports = {
                 }
             }
         }
-        msg.reply(`${msg.author.tag}: ` + "", { embed: { title: str.info, fields: fields, thumbnail: { url: member.user.avatarURL({ size: 2048, format: "png" }) } } })
+        await msg.reply(`${msg.author.tag}: ` + "", { embed: { title: str.info, fields: fields, thumbnail: { url: member.user.avatarURL({ size: 2048, format: "png" }) } } })
     }
 }

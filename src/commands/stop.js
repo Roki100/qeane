@@ -10,6 +10,6 @@ module.exports = {
         let vc = await msg.member.voice.channel.fetch()
         if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
         serverQueue.songs = []
-        serverQueue.player.stopTrack()
+        await serverQueue.player.stopTrack()
     }
 }

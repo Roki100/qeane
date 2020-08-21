@@ -11,20 +11,20 @@ module.exports = {
           if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
           // if (evaled.includes(client.token)) evaled = evaled.replace(/client.token/g, "no plz, dont leak token")
         }
-        msg.reply(evaled, { code: "js" })
+        await msg.reply(evaled, { code: "js" })
       } else {
         let evaled = await eval(msg.args.join(" "));
         if (evaled) {
           if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
           // if (evaled.includes(client.token)) evaled = evaled.replace(/client.token/g, "no plz, dont leak token")
         }
-        msg.reply(`${msg.author.tag}: ` + evaled)
+        await msg.reply(`${msg.author.tag}: ` + evaled)
       }
 
     } catch (err) {
       console.log(err)
-      msg.reply(`${msg.author.tag}: ` + err)
-    };
+      await msg.reply(`${msg.author.tag}: ` + err)
+    }
 
   },
 };

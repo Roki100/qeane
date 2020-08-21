@@ -12,20 +12,20 @@ module.exports = {
                 let content = msg.args.slice(1).join(' ')
                 if (content.length >= 2000) return msg.reply(`${msg.author.tag}: ` + str.create.descTooBog)
                 client.db.set(`tags.${msg.guild.id}.${msg.args[0]}`, content)
-                msg.reply(`${msg.author.tag}: ` + str.create.success)
+                await msg.reply(`${msg.author.tag}: ` + str.create.success)
                 break;
             case "delete":
                 msg.args = msg.args.slice(1)
                 if (!msg.args[0]) return msg.reply(`${msg.author.tag}: ` + str.delete.noName)
                 if (!client.db.has(`tags.${msg.guild.id}.${msg.args[0]}`)) return msg.reply(`${msg.author.tag}: ` + str.invalidTag)
                 client.db.delete(`tags.${msg.guild.id}.${msg.args[0]}`)
-                msg.reply(`${msg.author.tag}: ` + str.delete.success)
+                await msg.reply(`${msg.author.tag}: ` + str.delete.success)
                 break;
             case "list":
                 let tags = client.db.get(`tags.${msg.guild.id}`)
                 if (!tags) return msg.reply(`${msg.author.tag}: ` + str.list.noTag)
                 let list = Object.keys(tags).join(', ')
-                msg.reply(`${msg.author.tag}: ` + "", {
+                await msg.reply(`${msg.author.tag}: ` + "", {
                     embed: {
                         description: list,
                         title: str.list.list
@@ -33,7 +33,7 @@ module.exports = {
                 })
                 break;
             default:
-                msg.reply(`${msg.author.tag}: ` + str.usage)
+                await msg.reply(`${msg.author.tag}: ` + str.usage)
                 break;
         }
     }

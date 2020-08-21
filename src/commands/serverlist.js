@@ -7,9 +7,7 @@ module.exports = {
         client.guilds.cache.forEach(guild => {
             string += `${guild.name} (${guild.id})\n`;
         })
-
-
-        msg.author.send(string)
-        msg.reply(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).commands.serverlist.sent);
+        await msg.author.send(string)
+        await msg.reply(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).commands.serverlist.sent);
     },
 } 

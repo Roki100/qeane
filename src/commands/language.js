@@ -11,13 +11,13 @@ module.exports = {
         langstr.push(`**${l.name}**`)
       })
       langstr = langstr.join(', ')
-      msg.reply(`${msg.author.tag}: ` + langstr)
+      await msg.reply(`${msg.author.tag}: ` + langstr)
       return;
     }
     let language = client.languages.get(msg.args.join(' '))
     if (!language) return msg.reply(`${msg.author.tag}: ` + `${str.invalidLanguage}\n${str.usage}`)
     client.db.set("language." + msg.guild.id, msg.args.join(' '))
     msg.guild.language = language
-    msg.reply(`${msg.author.tag}: ` + str.success.replace("{0}", msg.args.join(' ')))
+    await msg.reply(`${msg.author.tag}: ` + str.success.replace("{0}", msg.args.join(' ')))
   }
 }
