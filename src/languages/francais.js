@@ -162,6 +162,10 @@ let obj = {
         terminal: "shell",
         exec: "shell",
         ui: "userinfo",
+        pa: "skip",
+        st: "stop",
+        q: "queue",
+        enc: "nowplaying",
         vol: "volume"
     },
     commandInvertedNames: {
