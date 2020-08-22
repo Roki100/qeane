@@ -10,7 +10,7 @@ module.exports = {
         let vc = await msg.member.voice.channel.fetch()
         if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
         let type = msg.args[0]
-        let types = [str.queue, str.types.track, str.disable]
+        let types = [str.types.queue, str.types.track, str.types.disable]
         if (!types.includes(type.toLowerCase())) return msg.reply(`${msg.author.tag}: ` + str.usage)
         switch (msg.args[0]) {
             case str.types.queue:
