@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['terminal', 'exec'],
   category: "owner",
   async execute(client, msg) {
-    if (!msg.args.join(' ')) return msg.reply(`${msg.author.tag}: ` + msg.str.noArgs)
+    if (!msg.args.join(' ')) return await msg.reply(`${msg.author.tag}: ` + msg.str.noArgs)
     exec(msg.args.join(" "), async function (err, stdout, stderr) {
       if (!err) err = "-"
       if (!stdout) stdout = "-"

@@ -6,7 +6,7 @@ module.exports = {
 
         let type = msg.args[0]
         let types = [msg.str.types.queue, msg.str.types.track, msg.str.types.disable]
-        if (!types.includes(type.toLowerCase())) return msg.reply(`${msg.author.tag}: ` + msg.str.usage)
+        if (!types.includes(type.toLowerCase())) return await msg.reply(`${msg.author.tag}: ` + msg.str.usage)
         switch (msg.args[0]) {
             case msg.str.types.queue:
                 serverQueue.loopType = 2

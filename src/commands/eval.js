@@ -3,7 +3,7 @@ module.exports = {
   ownerOnly: true,
   category: "owner",
   async execute(client, msg) {
-    if (!msg.args.join(" ")) return msg.reply(`${msg.author.tag}: ` + "plz send args")
+    if (!msg.args.join(" ")) return await msg.reply(`${msg.author.tag}: ` + "plz send args")
     try {
       if (msg.args[0] === "inspect") {
         let evaled = require('util').inspect(await eval(msg.args.slice(1).join(" ")));

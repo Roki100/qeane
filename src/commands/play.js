@@ -4,12 +4,12 @@ module.exports = {
     async execute(client, msg) {
         const musicStr = client.languages.get(msg.guild.language).music
         const { channel } = msg.member.voice
-        if (!channel) return msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
+        if (!channel) return await msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
         await channel.fetch()
         if (client.queue.get(msg.guild.id)) {
-            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
+            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return await msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
         }
-        if (!msg.args[0]) return msg.reply(`${msg.author.tag}: ` + msg.str.noSong)
+        if (!msg.args[0]) return await msg.reply(`${msg.author.tag}: ` + msg.str.noSong)
         const node = client.shoukaku.getNode();
         let data;
         if (require('is-a-url')(msg.args.join(' '))) {
@@ -17,7 +17,7 @@ module.exports = {
         } else {
             data = await node.rest.resolve(msg.args.join(' '), "youtube")
         }
-        if (!data) return msg.reply(`${msg.author.tag}: ` + msg.str.noSongFound);
+        if (!data) return await msg.reply(`${msg.author.tag}: ` + msg.str.noSongFound);
         if (client.shoukaku.getPlayer(msg.guild.id)) {
             let serverQueue = client.queue.get(msg.guild.id)
             switch (data.type) {

@@ -9,7 +9,7 @@ module.exports = {
             await serverQueue.player.stopTrack()
         } else {
             let amount = parseInt(msg.args[0])
-            if (!amount || amount < 1 || amount >= serverQueue.songs.length) return msg.reply(`${msg.author.tag}: ` + msg.str.invalidAmount)
+            if (!amount || amount < 1 || amount >= serverQueue.songs.length) return await msg.reply(`${msg.author.tag}: ` + msg.str.invalidAmount)
             serverQueue.songs.splice(0, amount - 1)
             msg.reply(`${msg.author.tag}: ` + msg.str.success2
                 .replace("{0}", amount)).then(m => { m.delete({ timeout: 15000 }) })

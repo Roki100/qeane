@@ -5,7 +5,7 @@ module.exports = {
     async execute(client, msg) {
         let musicStr = client.languages.get(msg.guild.language).music
         let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return msg.reply(`${msg.author.tag}: ` + musicStr.queueEmpty);
+        if (!serverQueue) return await msg.reply(`${msg.author.tag}: ` + musicStr.queueEmpty);
         const output = []
         for (let i = 1; i < Math.min(serverQueue.songs.length, 11); i++) {
             output[i] = [
