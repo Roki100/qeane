@@ -9,6 +9,7 @@ module.exports = {
         if (!msg.member.voice.channel) return msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
         let vc = await msg.member.voice.channel.fetch()
         if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
+
         function shuffle(a) {
             for (let i = a.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -16,6 +17,7 @@ module.exports = {
             }
             return a;
         }
+
         serverQueue.songs = [serverQueue.songs[0], ...shuffle(serverQueue.songs)]
         msg.reply(`${msg.author.tag}: ` + str.success)
     }

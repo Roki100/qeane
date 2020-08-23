@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { MessageEmbed } = require('discord.js')
+const {MessageEmbed} = require('discord.js')
 
 module.exports = {
     name: "dualfm",
@@ -7,10 +7,10 @@ module.exports = {
     async execute(client, msg) {
         fetch("https://tafina.xyz/api/dualfm").then(res => res.json()).then(res => {
             let fields = [
-                { name: 'Song', value: `${res.now.song}`, inline: true },
-                { name: 'Artist', value: `${res.now.artist}`, inline: true },
-                { name: 'Presenter', value: `${res.presenter.username}`, inline: true },
-                { name: 'Listeners', value: `${res.listeners.current}`, inline: true }
+                {name: 'Song', value: `${res.now.song}`, inline: true},
+                {name: 'Artist', value: `${res.now.artist}`, inline: true},
+                {name: 'Presenter', value: `${res.presenter.username}`, inline: true},
+                {name: 'Listeners', value: `${res.listeners.current}`, inline: true}
             ]
             const embed = new MessageEmbed()
                 .setTitle('DualFM')

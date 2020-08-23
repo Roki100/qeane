@@ -6,6 +6,7 @@ function swap(json) {
     }
     return ret;
 }
+
 let obj = {
     name: "francais",
     commands: {
@@ -164,7 +165,6 @@ let obj = {
         ui: "userinfo",
         pa: "skip",
         st: "stop",
-        q: "queue",
         enc: "nowplaying",
         vol: "volume"
     },

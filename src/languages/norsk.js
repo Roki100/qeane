@@ -6,6 +6,7 @@ function swap(json) {
     }
     return ret;
 }
+
 let obj = {
     name: "norsk",
     commands: {

@@ -4,7 +4,7 @@ module.exports = {
     async execute(client, msg) {
         const str = client.languages.get(msg.guild.language).commands.play
         const musicStr = client.languages.get(msg.guild.language).music
-        const { channel } = msg.member.voice
+        const {channel} = msg.member.voice
         if (!channel) return msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
         await channel.fetch()
         if (client.queue.get(msg.guild.id)) {
@@ -32,7 +32,9 @@ module.exports = {
                                 .replace("{0}", data.playlistName)
                                 .replace("{1}", data.tracks.length)
                         }
-                    }).then(msg2 => { msg2.delete({ timeout: 15000 }) })
+                    }).then(msg2 => {
+                        msg2.delete({timeout: 15000})
+                    })
                     break;
                 case "SEARCH":
                 case "TRACK":
@@ -49,10 +51,12 @@ module.exports = {
                                 .replace("{2}", track.info.isStream ? musicStr.liveStream : time)
                                 .replace("{3}", track.info.author)
                         }
-                    }).then(msg2 => { msg2.delete({ timeout: 15000 }) })
+                    }).then(msg2 => {
+                        msg2.delete({timeout: 15000})
+                    })
                     break;
             }
-            return;
+
         } else {
             const player = await node.joinVoiceChannel({
                 guildID: msg.guild.id,
@@ -80,7 +84,9 @@ module.exports = {
                                 .replace("{0}", data.playlistName)
                                 .replace("{1}", data.tracks.length)
                         }
-                    }).then(msg2 => { msg2.delete({ timeout: 15000 }) })
+                    }).then(msg2 => {
+                        msg2.delete({timeout: 15000})
+                    })
                     break;
                 case "SEARCH":
                 case "TRACK":
@@ -98,7 +104,9 @@ module.exports = {
                                 .replace("{3}", track.info.author)
                         }
 
-                    }).then(msg2 => { msg2.delete({ timeout: 15000 }) })
+                    }).then(msg2 => {
+                        msg2.delete({timeout: 15000})
+                    })
                     break;
             }
             client.queue.set(msg.guild.id, serverQueue)
@@ -121,10 +129,11 @@ module.exports = {
                 player.disconnect()
                 client.queue.delete(msg.guild.id)
             });
-            play(serverQueue, client, player, str, musicStr)
+            await play(serverQueue, client, player, str, musicStr)
         }
     }
 }
+
 async function play(serverQueue, client, player, str, musicStr) {
     switch (serverQueue.loopType) {
         case 0:
@@ -139,7 +148,9 @@ async function play(serverQueue, client, player, str, musicStr) {
             serverQueue.songs = [...serverQueue.songs, son]
             break;
     }
-    if (serverQueue.npmsg) { serverQueue.npmsg.delete() }
+    if (serverQueue.npmsg) {
+        serverQueue.npmsg.delete()
+    }
     await serverQueue.voiceChannel.fetch()
     if (!serverQueue.songs[0]) {
         serverQueue.textChannel.send(str.queueEmpty)

@@ -6,6 +6,7 @@ function swap(json) {
     }
     return ret;
 }
+
 let obj = {
     name: "english",
     commands: {
@@ -172,7 +173,7 @@ let obj = {
         p: "play",
         q: "queue",
         r: "resume",
-        sk: "seek",
+        se: "seek",
         exec: "shell",
         sh: "shuffle",
         sk: "skip",
