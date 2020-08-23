@@ -1,11 +1,20 @@
 const Discord = require('discord.js')
+const fs = require('fs')
+const config = require('../../config.json')
+const autoload = require('auto-load')
+const quick = require('quick.db-plus')
+const ksoft = require('@ksoft/api')
+
 /**
  * Setups the client
  * @param {Discord.Client} client - The client
  */
 module.exports = function (client) {
+<<<<<<< HEAD
     const fs = require('fs'), config = require('../../config.json'), autoload = require('auto-load'),
         quick = require('quick.db-plus'), ksoft = require('@ksoft/api')
+=======
+>>>>>>> 0887b14624475e70c72a460e25b13d989dc7938d
 
     client.queue = new Discord.Collection()
     client.config = config
@@ -16,6 +25,7 @@ module.exports = function (client) {
     client.version = require('../../package.json')["last-update"]
     client.languages = new Discord.Collection()
 
+<<<<<<< HEAD
     var commandFiles = fs
         .readdirSync(`./src/commands`)
         .filter(file => file.endsWith('.js'));
@@ -34,6 +44,26 @@ module.exports = function (client) {
         client.languages.set(langName, language)
         console.log(`===LANGUAGES=== Language succesfully loaded: ${lang}`)
     }
+=======
+  const commandFiles = fs
+    .readdirSync(`./src/commands`)
+    .filter(file => file.endsWith('.js'));
+  for (const file of commandFiles) {
+    const command = require(`../commands/${file}`);
+    client.commands.set(command.name, command);
+    console.log(`==COMMANDS== Command succesfully loaded: ${command.name}`)
+  }
+
+  const languageFiles = fs
+    .readdirSync("./src/languages")
+    .filter(file => file.endsWith('.js'));
+  for (const lang of languageFiles) {
+    const language = require(`../languages/${lang}`);
+    const langName = lang.split('.')[0]
+    client.languages.set(langName, language)
+    console.log(`===LANGUAGES=== Language succesfully loaded: ${lang}`)
+  }
+>>>>>>> 0887b14624475e70c72a460e25b13d989dc7938d
 
     console.log('==SETUP== client succesfully loaded!')
 }

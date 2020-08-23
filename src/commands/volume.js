@@ -14,9 +14,9 @@ module.exports = {
         let vol = parseInt(msg.args.join(' '))
         if (!vol) return msg.reply(`${msg.author.tag}: ` + str.noArgs)
         if (vol < 1 || vol > 250) return msg.reply(`${msg.author.tag}: ` + str.invalid)
-        serverQueue.player.setVolume(vol)
+        await serverQueue.player.setVolume(vol)
         serverQueue.volume = vol
-        msg.reply(`${msg.author.tag}: ` + str.success
+        await msg.reply(`${msg.author.tag}: ` + str.success
             .replace("{0}", vol))
     }
 }

@@ -3,3 +3,6 @@ qeane.sqlite
 config.json
 dbllongdesc.html
 ./src/setup/webhooks.js
+
+# IDE specific
+.idea

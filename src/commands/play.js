@@ -56,7 +56,10 @@ module.exports = {
                     })
                     break;
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0887b14624475e70c72a460e25b13d989dc7938d
         } else {
             const player = await node.joinVoiceChannel({
                 guildID: msg.guild.id,

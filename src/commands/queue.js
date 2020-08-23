@@ -30,4 +30,9 @@ module.exports = {
         }
         msg.reply(`${msg.author.tag}: ` + "", queueemb)
     }
+<<<<<<< HEAD
+=======
+    await msg.reply(`${msg.author.tag}: ` + "", queueemb)
+  }
+>>>>>>> 0887b14624475e70c72a460e25b13d989dc7938d
 }

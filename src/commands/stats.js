@@ -1,4 +1,5 @@
 async function cpuUsage(time) {
+<<<<<<< HEAD
     let startTime = process.hrtime();
     let startCPU = process.cpuUsage();
     await new Promise(r => setTimeout(r, time));
@@ -8,6 +9,16 @@ async function cpuUsage(time) {
     let timings = elapsedCPU.user / 1000 + elapsedCPU.system / 1000;
     let percentage = 100 * timings / milliseconds;
     return percentage;
+=======
+  let startTime = process.hrtime();
+  let startCPU = process.cpuUsage();
+  await new Promise(r => setTimeout(r, time));
+  let elapsedTime = process.hrtime(startTime);
+  let elapsedCPU = process.cpuUsage(startCPU);
+  let milliseconds = elapsedTime[0] * 1000 + elapsedTime[1] / 1000000;
+  let timings = elapsedCPU.user / 1000 + elapsedCPU.system / 1000;
+  return 100 * timings / milliseconds;
+>>>>>>> 0887b14624475e70c72a460e25b13d989dc7938d
 }
 
 module.exports = {
@@ -33,6 +44,7 @@ module.exports = {
     `
 
 
+<<<<<<< HEAD
         m.edit("", {
             embed: {
                 title: str.stats,
@@ -40,6 +52,15 @@ module.exports = {
                 color: client.functions.randomColor()
             }
         })
+=======
+    await m.edit("", {
+      embed: {
+        title: str.stats,
+        description: desc,
+        color: client.functions.randomColor()
+      }
+    })
+>>>>>>> 0887b14624475e70c72a460e25b13d989dc7938d
 
 
     },
