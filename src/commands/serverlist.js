@@ -8,6 +8,6 @@ module.exports = {
             string += `${guild.name} (${guild.id})\n`;
         })
         await msg.author.send(string)
-        await msg.reply(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).commands.serverlist.sent);
+        await msg.reply(`${msg.author.tag}: ` + msg.str.sent);
     },
 } 

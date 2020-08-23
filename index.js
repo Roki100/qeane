@@ -1,5 +1,5 @@
-const {Client} = require('discord.js-light')
-const {Shoukaku} = require('shoukaku')
+const { Client } = require('discord.js-light')
+const { Shoukaku } = require('shoukaku')
 const startBot = require('./src/index')
 
 const LavalinkServer = [require('./config.json').node];

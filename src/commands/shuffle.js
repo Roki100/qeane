@@ -2,7 +2,6 @@ module.exports = {
     name: "shuffle",
     category: "music",
     async execute(client, msg) {
-        const str = client.languages.get(msg.guild.language).commands.shuffle
         const musicStr = client.languages.get(msg.guild.language).music
         let serverQueue = client.queue.get(msg.guild.id)
         if (!serverQueue) return msg.reply(`${msg.author.tag}: ` + musicStr.queueEmpty)
@@ -19,6 +18,6 @@ module.exports = {
         }
 
         serverQueue.songs = [serverQueue.songs[0], ...shuffle(serverQueue.songs)]
-        await msg.reply(`${msg.author.tag}: ` + str.success)
+        await msg.reply(`${msg.author.tag}: ` + msg.str.success)
     }
 }

@@ -2,15 +2,14 @@ module.exports = {
     name: "play",
     category: "music",
     async execute(client, msg) {
-        const str = client.languages.get(msg.guild.language).commands.play
         const musicStr = client.languages.get(msg.guild.language).music
-        const {channel} = msg.member.voice
+        const { channel } = msg.member.voice
         if (!channel) return msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
         await channel.fetch()
         if (client.queue.get(msg.guild.id)) {
             if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
         }
-        if (!msg.args[0]) return msg.reply(`${msg.author.tag}: ` + str.noSong)
+        if (!msg.args[0]) return msg.reply(`${msg.author.tag}: ` + msg.str.noSong)
         const node = client.shoukaku.getNode();
         let data;
         if (require('is-a-url')(msg.args.join(' '))) {
@@ -18,7 +17,7 @@ module.exports = {
         } else {
             data = await node.rest.resolve(msg.args.join(' '), "youtube")
         }
-        if (!data) return msg.reply(`${msg.author.tag}: ` + str.noSongFound);
+        if (!data) return msg.reply(`${msg.author.tag}: ` + msg.str.noSongFound);
         if (client.shoukaku.getPlayer(msg.guild.id)) {
             let serverQueue = client.queue.get(msg.guild.id)
             switch (data.type) {
@@ -27,13 +26,13 @@ module.exports = {
                     msg.reply(`${msg.author.tag}: ` + "", {
                         embed: {
                             color: client.functions.randomColor(),
-                            title: str.playlist.added,
-                            description: str.playlist.desc
+                            title: msg.str.playlist.added,
+                            description: msg.str.playlist.desc
                                 .replace("{0}", data.playlistName)
                                 .replace("{1}", data.tracks.length)
                         }
                     }).then(msg2 => {
-                        msg2.delete({timeout: 15000})
+                        msg2.delete({ timeout: 15000 })
                     })
                     break;
                 case "SEARCH":
@@ -44,22 +43,18 @@ module.exports = {
                     msg.reply(`${msg.author.tag}: ` + "", {
                         embed: {
                             color: client.functions.randomColor(),
-                            title: str.track.added,
-                            description: str.track.desc
+                            title: msg.str.track.added,
+                            description: msg.str.track.desc
                                 .replace("{0}", track.info.title)
                                 .replace("{1}", track.info.uri)
-                                .replace("{2}", track.info.isStream ? musicStr.liveStream : time)
+                                .replace("{2}", track.info.ismsg.str.eam ? musicStr.livemsg.str.eam : time)
                                 .replace("{3}", track.info.author)
                         }
                     }).then(msg2 => {
-                        msg2.delete({timeout: 15000})
+                        msg2.delete({ timeout: 15000 })
                     })
                     break;
             }
-<<<<<<< HEAD
-
-=======
->>>>>>> 0887b14624475e70c72a460e25b13d989dc7938d
         } else {
             const player = await node.joinVoiceChannel({
                 guildID: msg.guild.id,
@@ -82,13 +77,13 @@ module.exports = {
                     msg.reply(`${msg.author.tag}: ` + "", {
                         embed: {
                             color: client.functions.randomColor(),
-                            title: str.playlist.added,
-                            description: str.playlist.desc
+                            title: msg.str.playlist.added,
+                            description: msg.str.playlist.desc
                                 .replace("{0}", data.playlistName)
                                 .replace("{1}", data.tracks.length)
                         }
                     }).then(msg2 => {
-                        msg2.delete({timeout: 15000})
+                        msg2.delete({ timeout: 15000 })
                     })
                     break;
                 case "SEARCH":
@@ -99,40 +94,40 @@ module.exports = {
                     msg.reply(`${msg.author.tag}: ` + "", {
                         embed: {
                             color: client.functions.randomColor(),
-                            title: str.track.added,
-                            description: str.track.desc
+                            title: msg.str.track.added,
+                            description: msg.str.track.desc
                                 .replace("{0}", track.info.title)
                                 .replace("{1}", track.info.uri)
-                                .replace("{2}", track.info.isStream ? musicStr.liveStream : time)
+                                .replace("{2}", track.info.ismsg.str.eam ? musicStr.livemsg.str.eam : time)
                                 .replace("{3}", track.info.author)
                         }
 
                     }).then(msg2 => {
-                        msg2.delete({timeout: 15000})
+                        msg2.delete({ timeout: 15000 })
                     })
                     break;
             }
             client.queue.set(msg.guild.id, serverQueue)
             player.on('end', () => {
-                play(serverQueue, client, player, str, musicStr)
+                play(serverQueue, client, player, msg.str, musicStr)
             });
             player.on('closed', () => {
-                serverQueue.textChannel.send(str.player.disconnect)
+                serverQueue.textChannel.send(msg.str.player.disconnect)
                 player.disconnect()
                 client.queue.delete(msg.guild.id)
             });
             player.on('error', (e) => {
-                serverQueue.textChannel.send(str.player.console.error
+                serverQueue.textChannel.send(msg.str.player.console.error
                     .replace("{0}", e))
                 player.disconnect()
                 client.queue.delete(msg.guild.id)
             });
             player.on('nodeDisconnect', () => {
-                serverQueue.textChannel.send(str.player.nodeDisconnect)
+                serverQueue.textChannel.send(msg.str.player.nodeDisconnect)
                 player.disconnect()
                 client.queue.delete(msg.guild.id)
             });
-            await play(serverQueue, client, player, str, musicStr)
+            await play(serverQueue, client, player, msg.str, musicStr)
         }
     }
 }
@@ -172,7 +167,7 @@ async function play(serverQueue, client, player, str, musicStr) {
             description: musicStr.np.desc
                 .replace("{0}", track.info.title)
                 .replace("{1}", track.info.uri)
-                .replace("{2}", track.info.isStream ? musicStr.liveStream : `${client.functions.progressBar(serverQueue.player.position, track.info.length)}\n${client.functions.duration(serverQueue.player.position)}/${time}`)
+                .replace("{2}", track.info.isstream ? musicStr.livestream : `${client.functions.progressBar(serverQueue.player.position, track.info.length)}\n${client.functions.duration(serverQueue.player.position)}/${time}`)
                 .replace("{3}", track.info.author),
         }
 

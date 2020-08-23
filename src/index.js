@@ -22,14 +22,14 @@ module.exports = function (client) {
     })
 
     client.on('ready', async () => {
-        client.user.setPresence({
+        await client.user.setPresence({
             status: "online",
-            activity: {name: "high quality music~ | qeane help", type: "LISTENING"}
+            activity: { name: "high quality music~ | qeane help", type: "LISTENING" }
         })
         setInterval(function () {
             client.user.setPresence({
                 status: "online",
-                activity: {name: "high quality music~ | qeane help", type: "LISTENING"}
+                activity: { name: "high quality music~ | qeane help", type: "LISTENING" }
             })
         }, 1800000);
 
