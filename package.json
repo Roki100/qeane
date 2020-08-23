@@ -10,7 +10,6 @@
     "node": "12.13.0"
   },
   "dependencies": {
-    "@ksoft/api": "3.1.9",
     "auto-load": "3.0.4",
     "axios": "^0.19.2",
     "child_process": "^1.0.2",
@@ -31,7 +30,6 @@
     "shoukaku": "^1.4.2",
     "string-toolkit": "^1.0.43",
     "timestamp-to-ms": "1.0.0",
-    "weather-js": "^2.0.0",
     "xmlhttprequest": "^1.8.0"
   }
 }

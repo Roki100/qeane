@@ -2,12 +2,8 @@ module.exports = {
     name: "loop",
     category: "music",
     async execute(client, msg) {
-        let musicStr = client.languages.get(msg.guild.language).music
-        let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return msg.reply(`${msg.author.tag}: ` + musicStr.queueEmpty)
-        if (!msg.member.voice.channel) return msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
-        let vc = await msg.member.voice.channel.fetch()
-        if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+
         let type = msg.args[0]
         let types = [msg.str.types.queue, msg.str.types.track, msg.str.types.disable]
         if (!types.includes(type.toLowerCase())) return msg.reply(`${msg.author.tag}: ` + msg.str.usage)
