@@ -16,9 +16,9 @@ module.exports = {
             embed: {
                 title: 'DualFM',
                 fields,
-                color: client.functions.randomColor() //ah ok, imma convert stuff to axios lol
+                color: client.functions.randomColor()
             }
         })
 
     }
-} //k
+}

@@ -98,7 +98,7 @@ module.exports = {
                             description: msg.str.track.desc
                                 .replace("{0}", track.info.title)
                                 .replace("{1}", track.info.uri)
-                                .replace("{2}", track.info.ismsg.str.eam ? musicStr.livemsg.str.eam : time)
+                                .replace("{2}", track.info.isstream ? musicStr.livestream : time)
                                 .replace("{3}", track.info.author)
                         }
 

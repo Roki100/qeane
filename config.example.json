@@ -7,8 +7,8 @@
   "token": "your bot token",
   "node": {
     "name": "Lavalink Node",
-    "host": "host",
-    "port": 1234,
+    "host": "localhost",
+    "port": 2333,
     "auth": "youshallnotpass"
   },
   "webhooks": {
