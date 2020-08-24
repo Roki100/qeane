@@ -6,9 +6,9 @@ module.exports = {
         if (!msg.args[1]) return await msg.reply(`${msg.author.tag}: ` + msg.str.noArgs)
         if (isNaN(msg.args[0]) || isNaN(msg.args[1])) return await msg.reply(`${msg.author.tag}: ` + msg.str.noArgs)
         if (msg.args[0] === 0 || msg.args[1] === 0) return await msgreply(`${msg.author.tag}: ` + msg.str.errorZero)
-        let s1 = serverQueue.songs[msg.args[0]], s2 = serverQueue.songs[msg.args[1]]
-        serverQueue.songs[msg.args[1]] = s1
-        serverQueue.songs[msg.args[0]] = s2
+        let o = serverQueue.songs[msg.args[0]]
+        delete serverQueue.songs[msg.args[0]]
+        serverQueue.songs.splice(msg.args[1], 0, o)
         await msg.reply(`${msg.author.tag}: ` + msg.str.success)
     }
 } 

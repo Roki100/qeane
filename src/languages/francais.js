@@ -146,6 +146,26 @@ let obj = {
             noArgs: "Donne-moi un nouveau volume, mais sous forme de chiffres stp",
             invalid: "Tu dois me donner un volume entre 1 et 250!",
             success: "Volume changé à **{0}**!"
+        },
+        radio: {
+            notFound: "Je n'ai pas pu trouver cette station!"
+        },
+        clear: {
+            emptyQueue: "Si tu veux suprimmer la queue, elle doit contenir quelque chose!",
+            cleared: "Okie doki, la queue est maintenant vide!"
+        },
+        move: {
+            noArgs: "Utilisation: ``bouger <nombre du son dans la queue> <nouvelle place dans la queue>``",
+            errorZero: "Nan, pas touche au son 0!",
+            success: "C'est un succés!!"
+        },
+        duplicates: {
+            success: "Les doublons ont été suprimmés!"
+        },
+        remove: {
+            noArgs: "Utilisation: ``enlever <nombre du son dans la queue>``",
+            errorZero: "Nan, pas touche au son 0!",
+            success: "Fait!"
         }
     },
     msgevent: {
@@ -196,7 +216,12 @@ let obj = {
         invite: "invite",
         support: "support",
         vote: "vote",
-        github: "github"
+        github: "github",
+        radio: "radio",
+        move: "bouger",
+        duplicates: "doublons",
+        remove: "enlever",
+        clear: "suprimmer"
     },
     music: {
         //these strings are used for several commands, so i put it here so you dont have to translate these strings 1k times

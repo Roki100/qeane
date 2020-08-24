@@ -26,7 +26,7 @@ module.exports = {
             str = item.url;
         })
         //gonna make this async so it happens in order
-        if (str.length === 0) return message.channel.send('Unknown radio station.')
+        if (str.length === 0) return message.channel.send(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).commands.radio.notFound)
         let data = client.music.search(str)
         if (client.shoukaku.getPlayer(msg.guild.id)) {
             let serverQueue = client.queue.get(msg.guild.id)

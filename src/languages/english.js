@@ -153,6 +153,26 @@ let obj = {
             noArgs: "You need to provide a new volume",
             invalid: "You need to provide a new volume between 1 and 250!",
             success: "Volume set to **{0}**!"
+        },
+        radio: {
+            notFound: "Woops, i wasn't able to find that radio station!"
+        },
+        clear: {
+            emptyQueue: "In order to clear the queue, you need to have more than one song in the queue!",
+            cleared: "Successfully cleared the queue!"
+        },
+        move: {
+            noArgs: "Usage: ``move <song number in the queue> <new place in the queue>``",
+            errorZero: "Woops, you can't move the song number 0!",
+            success: "Success!"
+        },
+        duplicates: {
+            success: "Successfully removed duplicates!"
+        },
+        remove: {
+            noArgs: "Usage: ``remove <song number in the queue>``",
+            errorZero: "Woops, you can't remove the song number 0!",
+            success: "Success!"
         }
     },
     msgevent: {
@@ -178,7 +198,12 @@ let obj = {
         sh: "shuffle",
         sk: "skip",
         st: "stop",
-        vol: "volume"
+        vol: "volume",
+        c: "clear",
+        ra: "radio",
+        dupes: "duplicates",
+        rm: "remove",
+        mv: "move"
     },
     commandInvertedNames: {
         bassboost: "bassboost",
@@ -209,7 +234,12 @@ let obj = {
         invite: "invite",
         support: "support",
         vote: "vote",
-        github: "github"
+        github: "github",
+        radio: "radio",
+        move: "move",
+        duplicates: "duplicates",
+        remove: "remove",
+        clear: "clear"
     },
     music: {
         //these strings are used for several commands, so i put it here so you dont have to translate these strings 1k times
