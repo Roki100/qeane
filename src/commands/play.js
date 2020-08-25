@@ -97,20 +97,20 @@ module.exports = {
                     break;
             }
             client.queue.set(msg.guild.id, serverQueue)
-            player.on('end', () => {
+            player.on('end', async () => {
                 await play(serverQueue, client, player)
             });
-            player.on('closed', () => {
+            player.on('closed', async () => {
                 await serverQueue.textChannel.send("Please do not disconnect me from a voice channel when the stop command exists...")
                 player.disconnect()
                 client.queue.delete(msg.guild.id)
             });
-            player.on('error', (e) => {
+            player.on('error', async (e) => {
                 await serverQueue.textChannel.send(`Looks like something terrible happened: ${e}`)
                 player.disconnect()
                 client.queue.delete(msg.guild.id)
             });
-            player.on('nodeDisconnect', () => {
+            player.on('nodeDisconnect', async () => {
                 await serverQueue.textChannel.send(`Looks like something terrible happened: The node disconnected. Please contact my owner about this!`)
                 player.disconnect()
                 client.queue.delete(msg.guild.id)
