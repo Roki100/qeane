@@ -13,7 +13,7 @@ module.exports = async (client, msg) => {
   }
   try {
     client.logs.send(`Command ${c.name} executed in ${msg.guild.name} (${msg.guild.id}) by ${msg.author.tag} (${msg.author.id}).${msg.args[0] ? `\nArgs: ${msg.args.join(' ')}` : "\nNo args"}`)
-    await command.execute(client, msg)
+    await c.execute(client, msg)
   } catch (err) {
     let error = {
       embed: {

@@ -14,7 +14,7 @@ module.exports = {
             }
             let fields = [], owner = [], music = [], info = [], setup = []
             commands.forEach(c => {
-                eval(`${c.category}.push("${c.name}${c.aliases ? ` (${c.aliases.join(', ')})` : ""}")\n${c.category}.sort()`)
+                eval(`${c.category}.push("**${c.name}${c.aliases ? ` (${c.aliases.join(', ')})` : ""}**")\n${c.category}.sort()`)
             })
             fields.push({ name: "Info", value: info.join(', '), inline: true })
             if (client.config.ownerID.includes(msg.author.id)) fields.push({
@@ -22,11 +22,11 @@ module.exports = {
                 value: owner.join(', '),
                 inline: true
             })
-            fields.push({ name: "Music", value: music.join(', '), inline: true })
             fields.push({ name: "Setup", value: setup.join(', '), inline: true })
+            fields.push({ name: "Music", value: music.join(', '), inline: false })
             fields.push({
                 name: "Links",
-                value: `[${msg.str.invite}](https://discord.com/api/oauth2/authorize?client_id=742670668646055967&permissions=3238918&scope=bot) | [${msg.str.support}](https://discord.gg/nXg4Yh7) | [${msg.str.vote}](https://top.gg/bot/742670668646055967/vote) | [${msg.str.github}](https://github.com/lumap/qeane)`
+                value: `[Invite](https://discord.com/api/oauth2/authorize?client_id=742670668646055967&permissions=3238918&scope=bot) | [Support Server](https://discord.gg/nXg4Yh7) | [Vote](https://top.gg/bot/742670668646055967/vote) | [GitHub](https://github.com/lumap/qeane)`
             })
             await msg.reply(`${msg.author.tag}: ` + "", {
                 embed: {
@@ -45,7 +45,7 @@ module.exports = {
 
         } else {
             let commandName = msg.args[0]
-            command = client.commands.get(commandName) || client.commands.get(client.aliases.get(msg.args[0]))
+            let command = client.commands.get(commandName) || client.commands.get(client.aliases.get(msg.args[0]))
             if (!command || command.ownerOnly && !client.config.owners.includes(msg.author.id)) return await msg.reply(`${msg.author.tag}: Command not found!`)
             await msg.reply(`${msg.author.tag}: `, {
                 embed: {

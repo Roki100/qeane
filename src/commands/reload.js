@@ -11,6 +11,6 @@ module.exports = {
         delete require.cache[require.resolve(`./${c.name}.js`)];
         client.commands.delete(c.name)
         client.commands.set(c.name, require(`./${c.name}.js`))
-        await msg.reply(`${msg.author.tag}: Command ${c.name} succesfulyl reloaded!`)
+        await msg.reply(`${msg.author.tag}: Command ${c.name} succesfully reloaded!`)
     }
 }
