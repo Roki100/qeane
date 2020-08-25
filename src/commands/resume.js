@@ -1,16 +1,13 @@
 module.exports = {
-    name: "resume",
+    aliases: ["rs"],
     category: "music",
+    description: "Resumes the current song",
+    name: "resume",
+    usage: "resume",
     async execute(client, msg) {
-        const str = client.languages.get(msg.guild.language).commands.resume
-        const musicStr = client.languages.get(msg.guild.language).music
-        let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return msg.reply(`${msg.author.tag}: ` + musicStr.queueEmpty)
-        if (!msg.member.voice.channel) return msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
-        let vc = await msg.member.voice.channel.fetch()
-        if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
-        if (!serverQueue.player.paused) return msg.reply(`${msg.author.tag}: ` + str.alreadyPlaying)
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+        if (!serverQueue.player.paused) return await msg.reply(`${msg.author.tag}: It seems like the current song is not paused!`)
         await serverQueue.player.setPaused(false)
-        await msg.reply(`${msg.author.tag}: ` + str.success)
+        await msg.reply(`${msg.author.tag}: Succesfully resumed the current song!`)
     }
 }

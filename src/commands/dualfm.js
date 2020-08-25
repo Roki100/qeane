@@ -1,29 +1,25 @@
-const fetch = require('node-fetch');
-
 module.exports = {
-    name: "dualfm",
+    aliases: ["dfm", "dual"],
     category: "music",
-    async execute(client, msg) {
-        fetch("https://tafina.xyz/api/dualfm").then(res => res.json()).then(async res => {
-            let fields = [
-                { name: 'Song', value: `${res.now.song}`, inline: true },
-                { name: 'Artist', value: `${res.now.artist}`, inline: true },
-                { name: 'Presenter', value: `${res.presenter.username}`, inline: true },
-                { name: 'Listeners', value: `${res.listeners.current}`, inline: true }
-            ]
-            // const embed = new MessageEmbed()
-            //     .setTitle('DualFM')
-            //     .addFields(fields)
-            //     .setColor('#cf6fcb')
+    description: "Shows the song currently playing on DualFM",
+    name: "dualfm",
+    usage: "dualfm",
+    async execute(_client, msg) {
+        const { data } = axios.get("https://tafina.xyz/api/dualfm")
+        let fields = [
+            { name: 'Song', value: `${data.now.song}`, inline: true },
+            { name: 'Artist', value: `${data.now.artist}`, inline: true },
+            { name: 'Presenter', value: `${data.presenter.username}`, inline: true },
+            { name: 'Listeners', value: `${data.listeners.current}`, inline: true }
+        ]
 
-            await msg.reply("", {
-                embed: {
-                    title: 'DualFS',
-                    fields,
-                    color: 13594571
-                }
-            })
+        await msg.reply("", {
+            embed: {
+                title: 'DualFM',
+                fields,
+                color: client.functions.randomColor()
+            }
+        })
 
-        });
     }
 }

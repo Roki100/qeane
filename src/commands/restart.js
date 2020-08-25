@@ -1,13 +1,14 @@
-
 let exec = require("child_process").exec
 
 module.exports = {
+  category: "owner",
+  description: "Fully restarts the bot",
   name: "restart",
   ownerOnly: true,
-  category: "owner",
-  async execute(client, msg) {
-    msg.reply(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).commands.restart.restarting).then(() => {
-      exec('pm2 restart Qeane', function () {});
+  usage: "restart",
+  async execute(_client, msg) {
+    msg.reply(`${msg.author.tag}: Restarting Qeane...`).then(() => {
+      exec('pm2 restart Qeane', function () { });
     });
   },
 };

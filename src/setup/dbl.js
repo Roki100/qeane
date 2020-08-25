@@ -1,6 +1,6 @@
 module.exports = async (client) => {
     const DBL = require("dblapi.js");
-    const dbl = new DBL(require('../../config.json').dbl, { webhookPort: 4001, webhookAuth: 'bestpasswdever' });
+    const dbl = new DBL(require('../../config.json').dbl, {webhookPort: 4001, webhookAuth: 'bestpasswdever'});
     dbl.webhook.on('ready', hook => {
         console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
     });

@@ -1,12 +1,12 @@
 module.exports = {
-  name: "prefix",
   category: "setup",
+  description: "Changes the prefix for this server",
+  name: "prefix",
+  usage: "prefix <new prefix>",
   async execute(client, msg) {
-    let str = client.languages.get(msg.guild.language).commands.prefix
-    if (!msg.member.permissions.toArray().includes("ADMINISTRATOR")) return msg.reply(`${msg.author.tag}: ` + str.noPerms);
-    if (!msg.args.join(' ')) return msg.reply(`${msg.author.tag}: ` + str.noArgs)
-    client.db.set("prefix." + msg.guild.id, msg.args.join(' '))
-    await msg.reply(`${msg.author.tag}: ` + str.success
-      .replace("{0}", msg.args.join(' ')))
+    if (!client.config.owner.includes(msg.author.id) && !msg.member.permissions.toArray().includes("ADMINISTRATOR")) return await msg.reply(`${msg.author.tag}: You need to be Administrator to do this!`);
+    if (!msg.args.join(' ')) return await msg.reply(`${msg.author.tag}: Usage: ${this.usage}`)
+    client.db.set(`${msg.guild.id}.prefix`, msg.args.join(' '))
+    await msg.reply(`${msg.author.tag}: Prefix succesfully changed to **${msg.args.join(' ')}**`)
   }
 }

@@ -1,14 +1,11 @@
 module.exports = {
-    name: "stop",
+    aliases: ["st"],
     category: "music",
+    description: "Stops playing music, destroys the queue and leaves the voice channel",
+    name: "stop",
+    usage: "stop",
     async execute(client, msg) {
-        const str = client.languages.get(msg.guild.language).commands.stop
-        const musicStr = client.languages.get(msg.guild.language).music
-        let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return msg.reply(`${msg.author.tag}: ` + musicStr.queueEmpty)
-        if (!msg.member.voice.channel) return msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
-        let vc = await msg.member.voice.channel.fetch()
-        if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
         serverQueue.songs = []
         await serverQueue.player.stopTrack()
     }

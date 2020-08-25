@@ -1,9 +1,12 @@
+
+const RadioBrowser = require('radio-browser');
+
 module.exports = {
-    aliases: ["p"],
+    aliases: ["r"],
     category: "music",
-    description: "Plays a song from YouTube",
-    name: "play",
-    usage: "play <song url/name/playlist url>",
+    description: "Plays a radio station",
+    name: "radio",
+    usage: "radio <radio station name>",
     async execute(client, msg) {
         const { channel } = msg.member.voice
         if (!channel) return await msg.reply(`${msg.author.tag}: You need to be connected to a voice channel to do that!`)
@@ -13,44 +16,33 @@ module.exports = {
         }
         if (!msg.args[0]) return await msg.reply(`${msg.author.tag}: Usage: ${this.usage}`)
         const node = client.shoukaku.getNode();
-        let data;
-        if (require('is-a-url')(msg.args.join(' '))) {
-            data = await node.rest.resolve(msg.args.join(' '))
-        } else {
-            data = await node.rest.resolve(msg.args.join(' '), "youtube")
-        }
-        if (!data) return await msg.reply(`${msg.author.tag}: It seems that I can not find that song, sorry :(`);
+        const filter = {
+            limit: 1,
+            by: 'name',
+            searchterm: msg.args.join(" "),
+        };
+        let str = '';
+        const stations = await RadioBrowser.getStations(filter)
+        stations.forEach(item => {
+            str = item.url;
+        })
+        //gonna make this async so it happens in order
+        if (str.length === 0) return message.channel.send(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).commands.radio.notFound)
+        let data = client.music.search(str)
         if (client.shoukaku.getPlayer(msg.guild.id)) {
             let serverQueue = client.queue.get(msg.guild.id)
-            switch (data.type) {
-                case "PLAYLIST":
-                    serverQueue.songs.push(...data.tracks)
-                    await msg.reply(`${msg.author.tag}: `, {
-                        embed: {
-                            color: client.functions.randomColor(),
-                            title: "Playlist added",
-                            description: `Name: **${data.playlistName}**\nSongs: **${data.tracks.length}**`
-                        }
-                    }).then(msg2 => {
-                        msg2.delete({ timeout: 15000 })
-                    })
-                    break;
-                case "SEARCH":
-                case "TRACK":
-                    serverQueue.songs.push(data.tracks[0])
-                    let track = data.tracks[0]
-                    time = client.functions.duration(track.info.length)
-                    await msg.reply(`${msg.author.tag}: `, {
-                        embed: {
-                            color: client.functions.randomColor(),
-                            title: "Track added",
-                            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : time}\nAuthor: **${track.info.author}**`
-                        }
-                    }).then(msg2 => {
-                        msg2.delete({ timeout: 15000 })
-                    })
-                    break;
-            }
+            serverQueue.songs.push(data.tracks[0])
+            let track = data.tracks[0]
+            time = client.functions.duration(track.info.length)
+            msg.reply(`${msg.author.tag}: ` + "", {
+                embed: {
+                    color: client.functions.randomColor(),
+                    title: "Radie Station added",
+                    description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : time}\nAuthor: **${track.info.author}**`
+                }
+            }).then(msg2 => {
+                msg2.delete({ timeout: 15000 })
+            })
         } else {
             const player = await node.joinVoiceChannel({
                 guildID: msg.guild.id,
@@ -67,35 +59,18 @@ module.exports = {
                 bassboost: 0,
                 npmsginterval: null
             }
-            switch (data.type) {
-                case "PLAYLIST":
-                    serverQueue.songs.push(...data.tracks)
-                    await msg.reply(`${msg.author.tag}: `, {
-                        embed: {
-                            color: client.functions.randomColor(),
-                            title: "Playlist added",
-                            description: `Name: **${data.playlistName}**\nSongs: **${data.tracks.length}**`
-                        }
-                    }).then(msg2 => {
-                        msg2.delete({ timeout: 15000 })
-                    })
-                    break;
-                case "SEARCH":
-                case "TRACK":
-                    serverQueue.songs.push(data.tracks[0])
-                    let track = data.tracks[0]
-                    time = client.functions.duration(track.info.length)
-                    await msg.reply(`${msg.author.tag}: `, {
-                        embed: {
-                            color: client.functions.randomColor(),
-                            title: "Track added",
-                            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : time}\nAuthor: **${track.info.author}**`
-                        }
-                    }).then(msg2 => {
-                        msg2.delete({ timeout: 15000 })
-                    })
-                    break;
-            }
+            serverQueue.songs.push(data.tracks[0])
+            let track = data.tracks[0]
+            time = client.functions.duration(track.info.length)
+            await msg.reply(`${msg.author.tag}: ` + "", {
+                embed: {
+                    color: client.functions.randomColor(),
+                    title: "Radio Station added",
+                    description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : time}\nAuthor: **${track.info.author}**`
+                }
+            }).then(msg2 => {
+                msg2.delete({ timeout: 15000 })
+            })
             client.queue.set(msg.guild.id, serverQueue)
             player.on('end', () => {
                 await play(serverQueue, client, player)

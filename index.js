@@ -16,6 +16,7 @@ class Qeane extends Client {
         super(opts);
         this.shoukaku = new Shoukaku(this, LavalinkServer, ShoukakuOptions);
     }
+
     _setupShoukakuEvents() {
         this.shoukaku.on('ready', (name) => console.log(`Lavalink Node: ${name} is now connected`));
         // You must handle error event
@@ -27,12 +28,14 @@ class Qeane extends Client {
     _setupClientEvents() {
         startBot(this)
     }
+
     start() {
         this._setupShoukakuEvents();
         this._setupClientEvents();
     }
 
 }
+
 new Qeane({
     disableMentions: "everyone",
     token: require('./config.json').token,

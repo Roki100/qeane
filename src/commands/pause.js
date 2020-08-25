@@ -1,16 +1,13 @@
 module.exports = {
-    name: "pause",
+    aliases: ["pa"],
     category: "music",
+    description: "Pauses the current song",
+    name: "pause",
+    usage: "pause",
     async execute(client, msg) {
-        const str = client.languages.get(msg.guild.language).commands.pause
-        const musicStr = client.languages.get(msg.guild.language).music
-        let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return msg.reply(`${msg.author.tag}: ` + musicStr.queueEmpty)
-        if (!msg.member.voice.channel) return msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
-        let vc = await msg.member.voice.channel.fetch()
-        if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
-        if (serverQueue.player.paused) return msg.reply(`${msg.author.tag}: ` + str.alreadyPaused)
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+        if (serverQueue.player.paused) return await msg.reply(`${msg.author.tag}: Looks like the current song is already paused!`)
         await serverQueue.player.setPaused(true)
-        await msg.reply(`${msg.author.tag}: ` + str.success)
+        await msg.reply(`${msg.author.tag}: Succesfully paused the current song!`)
     }
 }

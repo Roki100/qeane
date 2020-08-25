@@ -1,29 +1,28 @@
 {
-    "ownerID": [
-        "your id",
-        "put as many IDs as you want"
-    ],
-    "prefix": "qeane",
-    "token": "your bot token",
-    "ksoft": "your ksoft.si token",
-    "node": {
-        "name": "Lavalink Node",
-        "host": "host",
-        "port": 1234,
-        "auth": "youshallnotpass"
+  "ownerID": [
+    "your id",
+    "put as many IDs as you want"
+  ],
+  "prefix": "qeane",
+  "token": "your bot token",
+  "node": {
+    "name": "Lavalink Node",
+    "host": "localhost",
+    "port": 2333,
+    "auth": "youshallnotpass"
+  },
+  "webhooks": {
+    "guild": {
+      "id": "to log",
+      "token": "every server join/leave"
     },
-    "webhooks": {
-        "guild": {
-            "id": "to log",
-            "token": "every server join/leave"
-        },
-        "errors": {
-            "id": "to log",
-            "token": "every errors"
-        },
-        "logs": {
-            "id": "to log",
-            "token": "every executed command"
-        }
+    "errors": {
+      "id": "to log",
+      "token": "every errors"
+    },
+    "logs": {
+      "id": "to log",
+      "token": "every executed command"
     }
+  }
 }

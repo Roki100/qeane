@@ -10,8 +10,11 @@
     "node": "12.13.0"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@ksoft/api": "3.1.9",
     "@tafina/dualfm2": "^1.1.2",
+=======
+>>>>>>> 28aa99951ce3aac9870112ea9a5391179f16c790
     "auto-load": "3.0.4",
     "axios": "^0.19.2",
     "canvas": "^2.6.1",
@@ -20,10 +23,12 @@
     "dblapi.js": "^2.4.1",
     "discord.js": "12.2.0",
     "discord.js-light": "^2.8.6",
+<<<<<<< HEAD
     "dualfm": "^1.0.7",
     "erela.js": "^1.1.8",
+=======
+>>>>>>> 28aa99951ce3aac9870112ea9a5391179f16c790
     "express": "^4.17.1",
-    "fs": "0.0.1-security",
     "git-auto-deploy": "^1.0.6",
     "is-a-url": "^1.0.1-a",
     "moment": "^2.27.0",
@@ -34,7 +39,6 @@
     "string-sliceevery": "0.0.1",
     "string-toolkit": "^1.0.63",
     "timestamp-to-ms": "1.0.0",
-    "weather-js": "^2.0.0",
     "xmlhttprequest": "^1.8.0"
   }
 }

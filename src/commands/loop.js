@@ -1,29 +1,27 @@
 module.exports = {
-    name: "loop",
+    aliases: ["l"],
     category: "music",
+    description: "Enables the loop",
+    name: "loop",
+    usage: "loop <disable/track/queue>",
     async execute(client, msg) {
-        let str = client.languages.get(msg.guild.language).commands.loop
-        let musicStr = client.languages.get(msg.guild.language).music
-        let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return msg.reply(`${msg.author.tag}: ` + musicStr.queueEmpty)
-        if (!msg.member.voice.channel) return msg.reply(`${msg.author.tag}: ` + musicStr.noVc)
-        let vc = await msg.member.voice.channel.fetch()
-        if (serverQueue.voiceChannel.id !== vc.id) return msg.reply(`${msg.author.tag}: ` + musicStr.notSameVc)
-        let type = msg.args[0]
-        let types = [str.types.queue, str.types.track, str.types.disable]
-        if (!types.includes(type.toLowerCase())) return msg.reply(`${msg.author.tag}: ` + str.usage)
-        switch (msg.args[0]) {
-            case str.types.queue:
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+        if (!msg.args[0]) return await msg.reply(`${msg.author.tag}: Usage: ${this.usage}`)
+        let type = msg.args[0].toLowerCase()
+        let types = ["disable", "loop", "track"];
+        if (!types.includes(type)) return await msg.reply(`${msg.author.tag}: Usage: ${this.usage}`)
+        switch (type) {
+            case "queue":
                 serverQueue.loopType = 2
-                await msg.reply(`${msg.author.tag}: ` + "The queue will now loop!")
+                await msg.reply(`${msg.author.tag}: The queue will now loop!`)
                 return;
-            case str.types.track:
+            case "track":
                 serverQueue.loopType = 1
-                await msg.reply(`${msg.author.tag}: ` + "The current track will now repeat!")
+                await msg.reply(`${msg.author.tag}: The current track will now loop!`)
                 return;
-            case str.types.disable:
+            case "disable":
                 serverQueue.loopType = 0
-                await msg.reply(`${msg.author.tag}: ` + "Loop disabled!")
+                await msg.reply(`${msg.author.tag}: Loop disabled!`)
                 return;
         }
     }

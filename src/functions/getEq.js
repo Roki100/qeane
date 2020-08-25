@@ -1,9 +1,9 @@
 module.exports = (gain) => {
     let bands = [
-        { "band": 0, "gain": 0.175 },
-        { "band": 1, "gain": 0.150 },
-        { "band": 2, "gain": 0.125 },
-        { "band": 3, "gain": 0.1 }
+        {"band": 0, "gain": 0.175},
+        {"band": 1, "gain": 0.150},
+        {"band": 2, "gain": 0.125},
+        {"band": 3, "gain": 0.1}
     ]
     let tmp = [];
     bands.map(band => {

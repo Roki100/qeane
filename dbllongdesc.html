@@ -1,82 +1,117 @@
 <html lang="en">
 <style>
-  	#menu {
-  		background: #1f1f7a !important;
-  	}
-  	html, body {
-  		background: #2C2F33 !important;
-  	}
-  	h1 {
-  		color: white !important;
-  	}
-  	code {
-  		background-color: #23272A !important;
-    	color: #1abc9c !important;
-    	border-radius: 5px !important;
+    #menu {
+        background: #1f1f7a !important;
+    }
+
+    html,
+    body {
+        background: #2C2F33 !important;
+    }
+
+    h1 {
         color: white !important;
-	}
-  	#bot-details-page .bot-description {
-  		color: white !important;
-  	}
-    #edit, #delete, #support, #github, #report, #websitelink {
-		background-color: #23272A !important;
-   		color: #1abc9c !important;
-		border-radius: 5px !important;
-		color: white !important;
-	}
-  	.atag {
-		background-color: #23272A !important;
-  	    color: #1abc9c !important;
-		border-radius: 5px !important;
+    }
+
+    code {
+        background-color: #23272A !important;
+        color: #1abc9c !important;
+        border-radius: 5px !important;
         color: white !important;
-	}
-  	.atag:after {
-		border-bottom: 13px solid transparent;
-     	border-left: 10px solid #23272A;
-		border-top: 13px solid transparent;
-		position: absolute;
-		transition: all 0.2s ease-in-out;
-	}
-  	.titleandvote .votebutton {
-		background-color: #0f0f0a !important;
-  	  	color: #3955c6 !important;
-		border-radius: 3px !important;
-		color: white !important;
-	}
-	.votebutton {
-		background-color: #0f0f0a !important;
-  		color: #1abc9c !important;
-		border-radius: 3px !important;
-		color: #3955c6 !important;
-	}
- 	 #createdby b, #createdby span {
-		transition: all 0.8s !important;
-		background-color: #23272A !important;
- 	    color: white !important;
-	}
-	#createdby {
-	    color: white !important; 
-	}
-	#bot-details-page .bot-img {
+    }
+
+    #bot-details-page .bot-description {
+        color: white !important;
+    }
+
+    #edit,
+    #delete,
+    #support,
+    #github,
+    #report,
+    #websitelink {
+        background-color: #23272A !important;
+        color: #1abc9c !important;
+        border-radius: 5px !important;
+        color: white !important;
+    }
+
+    .atag {
+        background-color: #23272A !important;
+        color: #1abc9c !important;
+        border-radius: 5px !important;
+        color: white !important;
+    }
+
+    .atag:after {
+        border-bottom: 13px solid transparent;
+        border-left: 10px solid #23272A;
+        border-top: 13px solid transparent;
+        position: absolute;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .titleandvote .votebutton {
+        background-color: #0f0f0a !important;
+        color: #3955c6 !important;
+        border-radius: 3px !important;
+        color: white !important;
+    }
+
+    .votebutton {
+        background-color: #0f0f0a !important;
+        color: #1abc9c !important;
+        border-radius: 3px !important;
+        color: #3955c6 !important;
+    }
+
+    #createdby b,
+    #createdby span {
+        transition: all 0.8s !important;
+        background-color: #23272A !important;
+        color: white !important;
+    }
+
+    #createdby {
+        color: white !important;
+    }
+
+    #bot-details-page .bot-img {
         border-radius: 50% !important;
     }
-  	#bot-details-page #details .container {
-  		border-top: none !important;
+
+    #bot-details-page #details .container {
+        border-top: none !important;
         border-bottom: none !important;
-  	}
-  	.bot-name, .bot-description {
-  		color: white !important;
-	}
-  	.longdescription .content {
-  		background-color: #23272A !important;
-  		color: white !important;
+    }
+
+    .bot-name,
+    .bot-description {
+        color: white !important;
+    }
+
+    .longdescription .content {
+        background-color: #23272A !important;
+        color: white !important;
     }
 </style>
+
 <body>
-    <h1>Qeane, a very good multi-purpose bot easy to use!</h1>
-    <p>What is Qeane? It's a bot that has multiples features like moderation, fun commands and more! To get a list of commands, just type <bold>qeane help</bold></p>
-    <p>This bot also offers <bold>tags</bold>, and here is how they work:<br>First, You create a tag with the <bold>tag-create</bold> command, like this: <bold>qeane tag-create sleep Please sleep more!</bold></p>
-    <p>Second, you use the tag with <bold>qeane sleep</bold> and the bot will respond with "Please sleep more"! It's that easy! The <bold>tag-delete</bold> and <bold>tag-list</bold> commands are self-explanatory.</p>
-    <p><br>Tags are just one of the many features Qeane has, so dont don't hesitate to try it out!</p>
+    <h1>Qeane, a simple and powerful music bot!</h1>
+    <p>You probably already have a music bot in your server like Groovy, so you may be asking "What is the point of
+        adding **yet another one**?" Well, the answer is surprisingly simple: </p>
+    <p>If some people are listening to something, but someone wants to listen to something else and don't want to
+        disturb people, they can go to another voice channel and play this song with Qeane! </p>
+
+    <p>For now, Qeane supports the following sources for music:</p>
+    <ul>
+        <li>YouTube links (songs & playlists)</li>
+        <li>SoundCloud links (i dont know about soundcloud but probably both too)</li>
+        <li>YouTube search</li>
+    </ul>
+    <p>Spotify support will be added soon, the devs just need to find a way to do support playlists without spamming the
+        API.</p>
+    <p>If you added Qeane to your server, I have only one thing to say: Enjoy vibing~ !</p>
 </body>
+
 </html>
