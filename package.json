@@ -10,11 +10,8 @@
     "node": "12.13.0"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@ksoft/api": "3.1.9",
     "@tafina/dualfm2": "^1.1.2",
-=======
->>>>>>> 28aa99951ce3aac9870112ea9a5391179f16c790
     "auto-load": "3.0.4",
     "axios": "^0.19.2",
     "canvas": "^2.6.1",
@@ -23,11 +20,8 @@
     "dblapi.js": "^2.4.1",
     "discord.js": "12.2.0",
     "discord.js-light": "^2.8.6",
-<<<<<<< HEAD
     "dualfm": "^1.0.7",
     "erela.js": "^1.1.8",
-=======
->>>>>>> 28aa99951ce3aac9870112ea9a5391179f16c790
     "express": "^4.17.1",
     "git-auto-deploy": "^1.0.6",
     "is-a-url": "^1.0.1-a",
