@@ -1,7 +1,9 @@
 module.exports = {
-    name: 'vote',
     category: "info",
+    description: "Gives a link to vote for me on top.gg",
+    name: 'vote',
+    usage: "vote",
     async execute(_client, msg) {
-        msg.reply(`${msg.author.tag}: https://top.gg/bot/742670668646055967/vote`)
+        await msg.reply(`${msg.author.tag}: https://top.gg/bot/742670668646055967/vote`)
     }
 }

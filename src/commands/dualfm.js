@@ -1,8 +1,9 @@
-const axios = require("axios");
-
 module.exports = {
-    name: "dualfm",
+    aliases: ["dfm", "dual"],
     category: "music",
+    description: "Shows the song currently playing on DualFM",
+    name: "dualfm",
+    usage: "dualfm",
     async execute(_client, msg) {
         const { data } = axios.get("https://tafina.xyz/api/dualfm")
         let fields = [

@@ -10,10 +10,12 @@ async function cpuUsage(time) {
 }
 
 module.exports = {
-    name: 'stats',
     category: "info",
+    description: "Gives random stats about Qeane",
+    name: 'stats',
+    usage: "stats",
     async execute(client, msg) {
-        let m = await msg.reply(`${msg.author.tag}: ` + "", { embed: { description: msg.str.collecting } })
+        let m = await msg.reply(`${msg.author.tag}: `, { embed: { description: "Collecting stats, please wait..." } })
         let totalSeconds = (client.uptime / 1000);
         let days = Math.floor(totalSeconds / 86400);
         let hours = Math.floor(totalSeconds / 3600);
@@ -23,15 +25,15 @@ module.exports = {
         let seconds = totalSeconds % 60;
         let cpuusage = cpuUsage(2000)
         let desc = `
-    ${msg.str.uptime} **${days}d, ${hours}h, ${minutes}m, ${Math.round(seconds)}s**
-    ${msg.str.servers} **${client.guilds.cache.size}**
-    ${msg.str.cores} **${require('os').cpus().length}**
-    ${msg.str.usage} **${await cpuusage}%**
-    ${msg.str.ram} **${Math.round(process.memoryUsage().heapUsed / 1024 / 1024) + 'MB'}/${Math.round(require('os').totalmem() / 1000000000) + 'GB'}**
+    Uptime: **${days}d, ${hours}h, ${minutes}m, ${Math.round(seconds)}s**
+    Servers: **${client.guilds.cache.size}**
+    CPU cores: **${require('os').cpus().length}**
+    CPU Usage: **${await cpuusage}%**
+    RAM Usage: **${Math.round(process.memoryUsage().heapUsed / 1024 / 1024) + 'MB'}/${Math.round(require('os').totalmem() / 1000000000) + 'GB'}**
     `
         await m.edit("", {
             embed: {
-                title: msg.str.stats,
+                title: "Some random stats about Qeane",
                 description: desc,
                 color: client.functions.randomColor()
             }

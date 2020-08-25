@@ -1,7 +1,10 @@
 module.exports = {
-    name: 'github',
+    aliases: ["gh"],
     category: "info",
-    async execute(client, msg) {
-        msg.reply(`${msg.author.tag}: https://github.com/lumap/qeane`)
+    description: "Gives the link to my github repo",
+    name: 'github',
+    usage: "github",
+    async execute(_client, msg) {
+        await msg.reply(`${msg.author.tag}: https://github.com/lumap/qeane`)
     }
 }
