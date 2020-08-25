@@ -14,7 +14,7 @@ module.exports = {
             }
             let fields = [], owner = [], music = [], info = [], setup = []
             commands.forEach(c => {
-                eval(`${c.category}.push("${c.name}${c.aliases[0] ? ` (${c.aliases.join(', ')})` : ""}")\n${c.category}.sort()`)
+                eval(`${c.category}.push("${c.name}${c.aliases ? ` (${c.aliases.join(', ')})` : ""}")\n${c.category}.sort()`)
             })
             fields.push({ name: "Info", value: info.join(', '), inline: true })
             if (client.config.ownerID.includes(msg.author.id)) fields.push({
@@ -56,7 +56,7 @@ module.exports = {
                     },
                     description: `Help for the ${command.name} command`,
                     fields: [
-                        { name: "Aliases", value: command.aliases[0] ? command.aliases.join(', ') : "None", inline: true },
+                        { name: "Aliases", value: command.aliases ? command.aliases.join(', ') : "None", inline: true },
                         { name: "Description", value: command.description, inline: true },
                         { name: "Category", value: command.category, inline: true },
                         { name: "Usage", value: command.usage, inline: true }

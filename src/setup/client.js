@@ -29,7 +29,7 @@ module.exports = function (client) {
   for (const file of commandFiles) {
     const command = require(`../commands/${file}`);
     client.commands.set(command.name, command);
-    if (command.aliases[0]) client.aliases.forEach(a => { client.aliases.set(a, command.name) })
+    if (command.aliases) client.aliases.forEach(a => { client.aliases.set(a, command.name) })
     console.log(`==COMMANDS== Command succesfully loaded: ${command.name}`)
   }
   console.log('==SETUP== client succesfully loaded!')
