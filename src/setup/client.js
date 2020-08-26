@@ -1,26 +1,18 @@
 const Discord = require('discord.js')
-const fs = require('fs')
-const config = require('../../config.json')
-const autoload = require('auto-load')
-const quick = require('quick.db-plus')
-const ksoft = require('@ksoft/api')
-
 /**
  * Setups the client
  * @param {Discord.Client} client - The client
  */
 module.exports = function (client) {
   const fs = require('fs'), config = require('../../config.json'), autoload = require('auto-load'),
-    quick = require('quick.db-plus'), ksoft = require('@ksoft/api')
+    quick = require('quick.db-plus')
 
   client.queue = new Discord.Collection()
   client.config = config
   client.functions = autoload('./src/functions')
   client.db = new quick.db('qeane')
-  client.ksoft = new ksoft.KSoftClient(require('../../config.json').ksoft)
   client.commands = new Discord.Collection()
   client.version = require('../../package.json')["last-update"]
-  client.languages = new Discord.Collection()
   client.aliases = new Discord.Collection()
 
   const commandFiles = fs

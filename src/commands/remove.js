@@ -6,11 +6,11 @@ module.exports = {
     usage: "remove <song number>",
     async execute(client, msg) {
         client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id)
-        if (isNaN(msg.args[0])) return await msg.reply(`${msg.author.tag}: Usage: ${this.usage}`)
-        if (msg.args[0] === 0) return await msg.reply(`${msg.author.tag}: I can not remove song 0!`)
-        if (!serverQueue.songs[msg.args[0]]) return await msg.reply(`${msg.author.tag}: This song is not in the queue!`)
+        if (isNaN(msg.args[0])) return await msg.react("🛑")
+        if (msg.args[0] === 0) return await msg.react("🛑")
+        if (!serverQueue.songs[msg.args[0]]) return await msg.react("🛑")
         const s = serverQueue.songs[msg.args[0]]
         delete serverQueue.songs[msg.args[0]]
-        return await msg.reply(`${msg.author.tag}: Succesfully removed **${s.info.title}** in position **${msg.args[0]}** from the queue!`)
+        return await msg.react("💮")
     }
 }

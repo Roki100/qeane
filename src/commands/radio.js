@@ -38,7 +38,7 @@ module.exports = {
                 embed: {
                     color: client.functions.randomColor(),
                     title: "Radie Station added",
-                    description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : time}\nAuthor: **${track.info.author}**`
+                    description: `Name: **${track.info.title}**\nURL: ${track.info.uri}`
                 }
             }).then(msg2 => {
                 msg2.delete({ timeout: 15000 })
@@ -122,12 +122,11 @@ async function play(serverQueue, client, player) {
     let track = serverQueue.songs[0]
     await player.playTrack(track)
     await player.setEqualizer(client.functions.getEq(serverQueue.bassboost))
-    let time = client.functions.duration(track.info.length)
     let m = await serverQueue.textChannel.send({
         embed: {
             color: client.functions.randomColor(),
-            title: "Track added",
-            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : `${client.functions.progressBar(serverQueue.player.position, track.info.length)}\n${client.functions.duration(serverQueue.player.position)}/${time}`}\nAuthor: **${track.info.author}**`
+            title: "Now Playing",
+            description: `**[${track.info.title}](${track.info.uri})**`
         }
     })
     serverQueue.npmsg = m

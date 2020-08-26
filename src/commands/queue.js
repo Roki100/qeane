@@ -6,7 +6,7 @@ module.exports = {
     usage: "queue",
     async execute(client, msg) {
         let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return await msg.reply(`${msg.author.tag}: Nothing is playing right now!`);
+        if (!serverQueue) return await msg.react("🛑")
         const output = []
         for (let i = 1; i < Math.min(serverQueue.songs.length, 11); i++) {
             output[i] = [
@@ -17,7 +17,7 @@ module.exports = {
 
         let queueemb = {
             embed: {
-                description: `Current: \n[${serverQueue.songs[0].info.title}](${serverQueue.songs[0].info.uri}) ([Link to Now Playing message](${serverQueue.linkToNpmsg}))\n\nIncoming:\n${output.join('\n')}`
+                description: `Current: \n[${serverQueue.songs[0].info.title}](${serverQueue.songs[0].info.uri}) ([Link to Now Playing message](${serverQueue.linkToNpmsg}))\n\nIncoming:\n${output.join('')}`
             }
         }
         if (serverQueue.songs.length > 11) {

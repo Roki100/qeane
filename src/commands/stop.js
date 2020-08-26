@@ -7,6 +7,7 @@ module.exports = {
     async execute(client, msg) {
         client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
         serverQueue.songs = []
+        await msg.react("👋")
         await serverQueue.player.stopTrack()
     }
 }
