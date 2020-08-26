@@ -9,7 +9,7 @@ module.exports = function (client) {
 
   client.queue = new Discord.Collection()
   client.config = config
-  client.functions = autoload('./src/functions')
+  client.functions = autoload('src/functions')
   client.db = new quick.db('qeane')
   client.commands = new Discord.Collection()
   client.version = require('../../package.json')["last-update"]

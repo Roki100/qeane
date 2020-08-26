@@ -2,7 +2,6 @@ module.exports = function (client) {
     const Discord = require('discord.js-light')
     client.events = require('auto-load')('./src/events')
     client.setup = require('auto-load')('./src/setup')
-    client.intervals = require('auto-load')('./src/intervals')
     client.config = require('../config.json')
     const guildWebhook = new Discord.WebhookClient(client.config.webhooks.guild.id, client.config.webhooks.guild.token)
     const errorWebhook = new Discord.WebhookClient(client.config.webhooks.errors.id, client.config.webhooks.errors.token)
@@ -10,7 +9,6 @@ module.exports = function (client) {
     client.errorWebhook = errorWebhook
     client.logs = logs
     client.queue = new Map()
-    client.intervals.npmsgs(client)
 
     client.on('guildCreate', async guild => {
         if (guild.id === '538361750651797504') return guild.leave()
