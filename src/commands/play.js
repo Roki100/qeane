@@ -44,7 +44,7 @@ module.exports = {
                         embed: {
                             color: client.functions.randomColor(),
                             title: "Track added",
-                            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : time}\nAuthor: **${track.info.author}**`
+                            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: **${track.info.isStream ? "Stream" : time}**\nAuthor: **${track.info.author}**`
                         }
                     }).then(msg2 => {
                         msg2.delete({ timeout: 15000 })
@@ -89,7 +89,7 @@ module.exports = {
                         embed: {
                             color: client.functions.randomColor(),
                             title: "Track added",
-                            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : time}\nAuthor: **${track.info.author}**`
+                            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: **${track.info.isStream ? "Stream" : time}**\nAuthor: **${track.info.author}**`
                         }
                     }).then(msg2 => {
                         msg2.delete({ timeout: 15000 })
@@ -152,7 +152,7 @@ async function play(serverQueue, client, player) {
         embed: {
             color: client.functions.randomColor(),
             title: "Track added",
-            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : `${client.functions.progressBar(serverQueue.player.position, track.info.length)}\n${client.functions.duration(serverQueue.player.position)}/${time}`}\nAuthor: **${track.info.author}**`
+            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: **${track.info.isStream ? "Stream" : `${client.functions.progressBar(serverQueue.player.position, track.info.length)}**\n${client.functions.duration(serverQueue.player.position)}/${time}`}\nAuthor: **${track.info.author}**`
         }
     })
     serverQueue.npmsg = m

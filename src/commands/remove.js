@@ -11,6 +11,7 @@ module.exports = {
         if (!serverQueue.songs[msg.args[0]]) return await msg.reply(`${msg.author.tag}: This song is not in the queue!`)
         const s = serverQueue.songs[msg.args[0]]
         delete serverQueue.songs[msg.args[0]]
+        serverQueue.songs = serverQueue.songs.filter(c => c)
         return await msg.reply(`${msg.author.tag}: Succesfully removed **${s.info.title}** in position **${msg.args[0]}** from the queue!`)
     }
 }

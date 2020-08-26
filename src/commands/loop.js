@@ -8,7 +8,7 @@ module.exports = {
         client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
         if (!msg.args[0]) return await msg.reply(`${msg.author.tag}: Usage: ${this.usage}`)
         let type = msg.args[0].toLowerCase()
-        let types = ["disable", "loop", "track"];
+        let types = ["disable", "queue", "track"];
         if (!types.includes(type)) return await msg.reply(`${msg.author.tag}: Usage: ${this.usage}`)
         switch (type) {
             case "queue":

@@ -24,11 +24,12 @@ module.exports = {
         let str = '';
         const stations = await RadioBrowser.getStations(filter)
         stations.forEach(item => {
-            str = item.url;
+            str += item.url;
         })
         //gonna make this async so it happens in order
-        if (str.length === 0) return message.channel.send(`${msg.author.tag}: ` + client.languages.get(msg.guild.language).commands.radio.notFound)
-        let data = client.music.search(str)
+        if (str.length === 0) return msg.reply.send(`${msg.author.tag}: No radio found!`)
+        let data = await node.rest.resolve(str)
+        if (!data) return await msg.reply(`${msg.author.tag}: No radio found!`)
         if (client.shoukaku.getPlayer(msg.guild.id)) {
             let serverQueue = client.queue.get(msg.guild.id)
             serverQueue.songs.push(data.tracks[0])
@@ -37,8 +38,8 @@ module.exports = {
             msg.reply(`${msg.author.tag}: ` + "", {
                 embed: {
                     color: client.functions.randomColor(),
-                    title: "Radie Station added",
-                    description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : time}\nAuthor: **${track.info.author}**`
+                    title: "Radio Station added",
+                    description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: **${track.info.isStream ? "Stream" : time}**\nAuthor: **${track.info.author}**`
                 }
             }).then(msg2 => {
                 msg2.delete({ timeout: 15000 })
@@ -126,8 +127,8 @@ async function play(serverQueue, client, player) {
     let m = await serverQueue.textChannel.send({
         embed: {
             color: client.functions.randomColor(),
-            title: "Track added",
-            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : `${client.functions.progressBar(serverQueue.player.position, track.info.length)}\n${client.functions.duration(serverQueue.player.position)}/${time}`}\nAuthor: **${track.info.author}**`
+            title: "Now playing",
+            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: **${track.info.isStream ? "Stream" : `${client.functions.progressBar(serverQueue.player.position, track.info.length)}\n${client.functions.duration(serverQueue.player.position)}/${time}`}**\nAuthor: **${track.info.author}**`
         }
     })
     serverQueue.npmsg = m

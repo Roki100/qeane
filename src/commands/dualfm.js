@@ -4,8 +4,8 @@ module.exports = {
     description: "Shows the song currently playing on DualFM",
     name: "dualfm",
     usage: "dualfm",
-    async execute(_client, msg) {
-        const { data } = axios.get("https://tafina.xyz/api/dualfm")
+    async execute(client, msg) {
+        const { data } = await require('axios').get("https://tafina.xyz/api/dualfm")
         let fields = [
             { name: 'Song', value: `${data.now.song}`, inline: true },
             { name: 'Artist', value: `${data.now.artist}`, inline: true },
