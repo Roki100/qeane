@@ -6,8 +6,8 @@ module.exports = {
     usage: "resume",
     async execute(client, msg) {
         client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
-        if (!serverQueue.player.paused) return await msg.reply(`${msg.author.tag}: It seems like the current song is not paused!`)
+        if (!serverQueue.player.paused) return await msg.react("🛑")
         await serverQueue.player.setPaused(false)
-        await msg.reply(`${msg.author.tag}: Succesfully resumed the current song!`)
+        await msg.react("⏯")
     }
 }
