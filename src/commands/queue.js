@@ -17,17 +17,9 @@ module.exports = {
 
         let queueemb = {
             embed: {
-<<<<<<< HEAD
-                description: `**__Current:__** \n[${serverQueue.songs[0].info.title}](${serverQueue.songs[0].info.uri}) ([Link to Now Playing message](${serverQueue.linkToNpmsg}))\n\n**__Incoming:__**${output.join('\n')}`,
-                footer: {
-                    text: ""
-                }
-            },
-
-=======
-                description: `Current: \n[${serverQueue.songs[0].info.title}](${serverQueue.songs[0].info.uri}) ([Link to Now Playing message](${serverQueue.linkToNpmsg}))\n\nIncoming:\n${output.join('')}`
+                description: `Current: \n[${serverQueue.songs[0].info.title}](${serverQueue.songs[0].info.uri}) ([Link to Now Playing message](${serverQueue.linkToNpmsg}))\n\nIncoming:\n${output.join('')}`,
+                footer: {}
             }
->>>>>>> 80ca20c3942c0294a3747186825f678371024c2a
         }
         if (serverQueue.songs.length > 11) {
             queueemb.embed.footer.text = `${serverQueue.songs.length - 11} more songs...`

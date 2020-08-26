@@ -38,13 +38,8 @@ module.exports = {
             msg.reply(`${msg.author.tag}: ` + "", {
                 embed: {
                     color: client.functions.randomColor(),
-<<<<<<< HEAD
-                    title: "Radio Station added",
-                    description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: **${track.info.isStream ? "Stream" : time}**\nAuthor: **${track.info.author}**`
-=======
                     title: "Radie Station added",
                     description: `Name: **${track.info.title}**\nURL: ${track.info.uri}`
->>>>>>> 80ca20c3942c0294a3747186825f678371024c2a
                 }
             }).then(msg2 => {
                 msg2.delete({ timeout: 15000 })
@@ -131,13 +126,8 @@ async function play(serverQueue, client, player) {
     let m = await serverQueue.textChannel.send({
         embed: {
             color: client.functions.randomColor(),
-<<<<<<< HEAD
-            title: "Now playing",
-            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: **${track.info.isStream ? "Stream" : `${client.functions.progressBar(serverQueue.player.position, track.info.length)}\n${client.functions.duration(serverQueue.player.position)}/${time}`}**\nAuthor: **${track.info.author}**`
-=======
             title: "Now Playing",
             description: `**[${track.info.title}](${track.info.uri})**`
->>>>>>> 80ca20c3942c0294a3747186825f678371024c2a
         }
     })
     serverQueue.npmsg = m
