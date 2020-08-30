@@ -14,14 +14,18 @@ module.exports = {
           if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
           // if (evaled.includes(client.token)) evaled = evaled.replace(/client.token/g, "no plz, dont leak token")
         }
-        await msg.reply(evaled, { code: "js" })
+        let options = {}
+        if (!evaled.toString().includes("```js\n")) options = { code: "js" }
+        await msg.reply(evaled, options)
       } else {
         let evaled = await eval(msg.args.join(" "));
         if (evaled) {
           if (evaled.length > 2000) evaled = evaled.sliceEvery(2000)[0]
           //if (evaled.includes(client.token)) evaled = evaled.replace(/client.token/g, "no plz, dont leak token")
         }
-        await msg.reply(evaled, { code: "js" })
+        let options = {}
+        if (!evaled.toString().includes("```js\n")) options = { code: "js" }
+        await msg.reply(evaled, options)
       }
 
     } catch (err) {
