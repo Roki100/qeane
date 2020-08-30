@@ -9,12 +9,12 @@ module.exports = {
     usage: "radio <radio station name>",
     async execute(client, msg) {
         const { channel } = msg.member.voice
-        if (!channel) return await msg.reply(`${msg.author.tag}: You need to be connected to a voice channel to do that!`)
+        if (!channel) return await msg.reply(`You need to be connected to a voice channel to do that!`)
         await channel.fetch()
         if (client.queue.get(msg.guild.id)) {
-            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return await msg.reply(`${msg.author.tag}: You need to be in my voice channel to do that!`)
+            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return await msg.reply(`You need to be in my voice channel to do that!`)
         }
-        if (!msg.args[0]) return await msg.reply(`${msg.author.tag}: Usage: ${this.usage}`)
+        if (!msg.args[0]) return await msg.reply(`Usage: ${this.usage}`)
         const node = client.shoukaku.getNode();
         const filter = {
             limit: 1,
@@ -27,22 +27,20 @@ module.exports = {
             str += item.url;
         })
         //gonna make this async so it happens in order
-        if (str.length === 0) return msg.reply.send(`${msg.author.tag}: No radio found!`)
+        if (str.length === 0) return msg.reply(`No radio found!`)
         let data = await node.rest.resolve(str)
-        if (!data) return await msg.reply(`${msg.author.tag}: No radio found!`)
+        if (!data) return await msg.reply(`No radio found!`)
         if (client.shoukaku.getPlayer(msg.guild.id)) {
             let serverQueue = client.queue.get(msg.guild.id)
             serverQueue.songs.push(data.tracks[0])
             let track = data.tracks[0]
             time = client.functions.duration(track.info.length)
-            msg.reply(`${msg.author.tag}: ` + "", {
+            msg.reply("", {
                 embed: {
                     color: client.functions.randomColor(),
                     title: "Radie Station added",
                     description: `Name: **${track.info.title}**\nURL: ${track.info.uri}`
                 }
-            }).then(msg2 => {
-                msg2.delete({ timeout: 15000 })
             })
         } else {
             const player = await node.joinVoiceChannel({
@@ -61,17 +59,6 @@ module.exports = {
                 npmsginterval: null
             }
             serverQueue.songs.push(data.tracks[0])
-            let track = data.tracks[0]
-            time = client.functions.duration(track.info.length)
-            await msg.reply(`${msg.author.tag}: ` + "", {
-                embed: {
-                    color: client.functions.randomColor(),
-                    title: "Radio Station added",
-                    description: `Name: **${track.info.title}**\nURL: ${track.info.uri}\nLength: ****${track.info.isStream ? "Stream" : time}\nAuthor: **${track.info.author}**`
-                }
-            }).then(msg2 => {
-                msg2.delete({ timeout: 15000 })
-            })
             client.queue.set(msg.guild.id, serverQueue)
             player.on('end', async () => {
                 await play(serverQueue, client, player)
@@ -126,7 +113,10 @@ async function play(serverQueue, client, player) {
     let m = await serverQueue.textChannel.send({
         embed: {
             color: client.functions.randomColor(),
-            title: "Now Playing",
+            author: {
+                icon_url: "https://cdn.discordapp.com/avatars/742670668646055967/1d3fe1524721d8ea17e12f2df2c0aa46.png?size=128",
+                name: "Now Playing"
+            },
             description: `**[${track.info.title}](${track.info.uri})**`
         }
     })

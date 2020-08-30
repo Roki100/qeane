@@ -6,7 +6,7 @@ module.exports = {
     usage: "nowplaying",
     async execute(client, msg) {
         let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return await msg.reply(`${msg.author.tag}: Nothing is playing here!`)
-        await msg.reply(`${msg.author.tag}: ` + serverQueue.linkToNpmsg)
+        if (!serverQueue) return await msg.reply(`Nothing is playing here!`)
+        await msg.reply(serverQueue.linkToNpmsg)
     }
 }

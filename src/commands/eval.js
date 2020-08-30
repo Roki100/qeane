@@ -6,7 +6,7 @@ module.exports = {
   ownerOnly: true,
   usage: "eval <code>",
   async execute(client, msg) {
-    if (!msg.args.join(" ")) return await msg.reply(`${msg.author.tag}: I can't eval the air!`)
+    if (!msg.args.join(" ")) return await msg.reply(`I can't eval the air!`)
     try {
       if (msg.args[0] === "inspect") {
         let evaled = require('util').inspect(await eval(msg.args.slice(1).join(" ")));

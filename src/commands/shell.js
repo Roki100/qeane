@@ -8,13 +8,13 @@ module.exports = {
   ownerOnly: true,
   usage: "shell <code>",
   async execute(client, msg) {
-    if (!msg.args.join(' ')) return await msg.reply(`${msg.author.tag}: Please provide something to execute!`)
+    if (!msg.args.join(' ')) return await msg.reply(`Please provide something to execute!`)
     exec(msg.args.join(" "), async function (err, stdout, stderr) {
       if (!err) err = "-"
       if (!stdout) stdout = "-"
       if (!stderr) stderr = "-"
       if (err.length + stdout.length + stderr.length > 1024) {
-        await msg.reply(`${msg.author.tag}: EEE, output too big! Sent it in the console...`)
+        await msg.reply(`EEE, output too big! Sent it in the console...`)
         console.log(`${err}\n${stdout}\n${stderr}`);
       } else {
         const embed = {
@@ -26,7 +26,7 @@ module.exports = {
           ]
         }
 
-        await msg.reply(`${msg.author.tag}: `, { embed: embed });
+        await msg.reply(``, { embed: embed });
       }
     });
 
