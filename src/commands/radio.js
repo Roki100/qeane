@@ -121,6 +121,4 @@ async function play(serverQueue, client, player) {
         }
     })
     serverQueue.npmsg = m
-    serverQueue.linkToNpmsg = `https://canary.discordapp.com/channels/${m.guild.id}/${m.channel.id}/${m.id}`
-    //https://canary.discordapp.com/channels/264445053596991498/265156286406983680/738433000811003995
 }
