@@ -5,7 +5,7 @@ module.exports = {
     name: "volume",
     usage: "volume [number between 1 and 250]",
     async execute(client, msg) {
-        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id); if (!serverQueue) return;
         if (!msg.args[0]) return await msg.reply(`${msg.author.tag}: Current volume: **${serverQueue.volume}**`)
         let vol = parseInt(msg.args.join(' '))
         if (!vol) return await msg.react("🛑")

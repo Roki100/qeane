@@ -5,7 +5,7 @@ module.exports = {
         name: "move",
         usage: "move <position of the song> <new position>",
         async execute(client, msg) {
-                client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+                client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id); if (!serverQueue) return;
                 if (!msg.args[1]) return await msg.react("🛑")
                 if (isNaN(msg.args[0]) || isNaN(msg.args[1])) return await msg.react("🛑")
                 if (msg.args[0] === 0 || msg.args[1] === 0) return await msg.react("🛑")

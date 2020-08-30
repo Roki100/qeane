@@ -5,7 +5,7 @@ module.exports = {
     name: "loop",
     usage: "loop <disable/track/queue>",
     async execute(client, msg) {
-        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id); if (!serverQueue) return;
         if (!msg.args[0]) return await msg.react("🛑")
         let type = msg.args[0].toLowerCase()
         let types = ["disable", "loop", "track"];

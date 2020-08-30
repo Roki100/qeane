@@ -5,7 +5,7 @@ module.exports = {
     name: "bassboost",
     usage: "bassboost <level of bassboost between -8 and 8>",
     async execute(client, msg) {
-        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id); if (!serverQueue) return;
         let gain = parseInt(msg.args[0])
         if (isNaN(gain)) return await msg.react("🛑")
         if (gain < -8 || gain > 8) return await msg.react("🛑")

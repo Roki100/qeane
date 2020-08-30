@@ -5,7 +5,7 @@ module.exports = {
     name: "seek",
     usage: "seek <position (ex: 4m 15s)>",
     async execute(client, msg) {
-        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id); if (!serverQueue) return;
         if (!msg.args.join(' ')) return await msg.react("🛑")
         let seek = require("timestamp-to-ms")(msg.args.join(' '))
         if (!seek) return await msg.react("🛑")

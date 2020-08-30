@@ -5,7 +5,7 @@ module.exports = {
     name: "shuffle",
     usage: "shuffle",
     async execute(client, msg) {
-        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id);
+        client.functions.musicCheck(client, msg); let serverQueue = client.queue.get(msg.guild.id); if (!serverQueue) return;
         if (!serverQueue.songs[3]) return await msg.react("🛑")
         function shuffle(a) {
             for (let i = a.length - 1; i > 0; i--) {
