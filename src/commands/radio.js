@@ -115,7 +115,7 @@ async function play(serverQueue, client, player) {
             color: client.functions.randomColor(),
             author: {
                 icon_url: "https://cdn.discordapp.com/avatars/742670668646055967/1d3fe1524721d8ea17e12f2df2c0aa46.png?size=128",
-                name: "Now Playing"
+                name: "| Now Playing"
             },
             description: `**[${track.info.title}](${track.info.uri})**`
         }
