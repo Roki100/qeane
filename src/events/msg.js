@@ -1,7 +1,8 @@
 module.exports = async (client, msg) => {
   if (msg.content === '' || !msg.guild || msg.channel.type === "dm" || msg.author.bot || msg.webhookID) return;
   let prefix = client.db.get(`${msg.guild.id}.prefix`) || client.config.prefix
-  if (msg.content === `<@!${client.user.id}>` || `<@${client.user.id}>`) return msg.reply(`${msg.author.tag}: Hi! I am Qeane, a cool music bot with a lot of useful features! My prefix here is **${prefix}**, so type **${prefix}help** to get a command list!`)
+  prefix = prefix.replace("\\", "\\\\")
+  if (msg.content === `<@!${client.user.id}>` || msg.content === `<@${client.user.id}>`) return msg.reply(`${msg.author.tag}: Hi! I am Qeane, a cool music bot with a lot of useful features! My prefix here is **${prefix}**, so type **${prefix}help** to get a command list!`)
   if (msg.content.startsWith(`<@!${client.user.id}>`)) prefix = `<@!${client.user.id}>`
   if (msg.content.startsWith(`<@${client.user.id}>`)) prefix = `<@${client.user.id}>`
   if (!msg.content.toLowerCase().startsWith(prefix.toLowerCase())) return;
