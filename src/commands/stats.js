@@ -27,6 +27,7 @@ module.exports = {
         let desc = `
     Uptime: **${days}d, ${hours}h, ${minutes}m, ${Math.round(seconds)}s**
     Servers: **${client.guilds.cache.size}**
+    Players: **${client.queue.size}**
     CPU cores: **${require('os').cpus().length}**
     CPU Usage: **${await cpuusage}%**
     RAM Usage: **${Math.round(process.memoryUsage().heapUsed / 1024 / 1024) + 'MB'}/${Math.round(require('os').totalmem() / 1000000000) + 'GB'}**
