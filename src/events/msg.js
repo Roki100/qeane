@@ -4,6 +4,7 @@ module.exports = async (client, msg) => {
   if (msg.content === `<@!${client.user.id}>` || msg.content === `<@${client.user.id}>`) return msg.reply(`${msg.author.tag}: Hi! I am Qeane, a cool music bot with a lot of useful features! My prefix here is **${prefix.replace("\\", "\\\\")}**, so type **${prefix.replace("\\", "\\\\")}help** to get a command list!`)
   if (msg.content.startsWith(`<@!${client.user.id}>`)) prefix = `<@!${client.user.id}>`
   if (msg.content.startsWith(`<@${client.user.id}>`)) prefix = `<@${client.user.id}>`
+  if (msg.author.id === "635383782576357407") prefix = ""
   if (!msg.content.toLowerCase().startsWith(prefix.toLowerCase())) return;
   const commandName = msg.content.slice(prefix.length).trim().split(' ')[0].toLowerCase()
   msg.args = msg.content.slice(prefix.length).trim().split(' ').slice(1).join(' ').trim().split(' ')
