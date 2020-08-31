@@ -15,6 +15,7 @@ module.exports = {
     name: 'stats',
     usage: "stats",
     async execute(client, msg) {
+
         let m = await msg.reply(``, { embed: { description: "Collecting stats, please wait..." } })
         let totalSeconds = (client.uptime / 1000);
         let days = Math.floor(totalSeconds / 86400);
@@ -25,12 +26,12 @@ module.exports = {
         let seconds = totalSeconds % 60;
         let cpuusage = cpuUsage(2000)
         let desc = `
-    Uptime: **${days}d, ${hours}h, ${minutes}m, ${Math.round(seconds)}s**
-    Servers: **${client.guilds.cache.size}**
-    Players: **${client.queue.size}**
-    CPU cores: **${require('os').cpus().length}**
-    CPU Usage: **${await cpuusage}%**
-    RAM Usage: **${Math.round(process.memoryUsage().heapUsed / 1024 / 1024) + 'MB'}/${Math.round(require('os').totalmem() / 1000000000) + 'GB'}**
+Uptime: **${days}d, ${hours}h, ${minutes}m, ${Math.round(seconds)}s**
+Servers: **${client.guilds.cache.size}**
+Players: **${client.queue.size}**
+CPU cores: **${require('os').cpus().length}**
+CPU Usage: **${await cpuusage}%**
+RAM Usage: **${Math.round(process.memoryUsage().heapUsed / 1024 / 1024) + 'MB'}/${Math.round(require('os').totalmem() / 1000000000) + 'GB'}**
     `
         await m.edit("", {
             embed: {

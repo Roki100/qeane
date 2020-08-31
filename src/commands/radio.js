@@ -8,6 +8,7 @@ module.exports = {
     name: "radio",
     usage: "radio <radio station name>",
     async execute(client, msg) {
+        if (!client.db.get(msg.author.id) || client.db.get(msg.author.id) < Date.now()) return msg.reply("In order to use this command, you need to vote for me! https://top.gg/bot/742670668646055967/vote")
         const { channel } = msg.member.voice
         if (!channel) return await msg.reply(`You need to be connected to a voice channel to do that!`)
         await channel.fetch()
