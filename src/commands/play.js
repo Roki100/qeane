@@ -36,13 +36,11 @@ module.exports = {
                 case "SEARCH":
                 case "TRACK":
                     serverQueue.songs.push(data.tracks[0])
-                    let track = data.tracks[0]
-                    time = client.functions.duration(track.info.length)
                     await msg.reply(``, {
                         embed: {
                             color: client.functions.randomColor(),
                             title: "Track added",
-                            description: `Name: **${track.info.title}**\nURL: ${track.info.uri}`
+                            description: `Name: **${data.tracks[0].info.title}**\nURL: ${data.tracks[0].info.uri}`
                         }
                     })
                     break;
@@ -66,6 +64,7 @@ module.exports = {
             switch (data.type) {
                 case "PLAYLIST":
                     serverQueue.songs.push(...data.tracks)
+                    break;
                 case "SEARCH":
                 case "TRACK":
                     serverQueue.songs.push(data.tracks[0])
@@ -96,6 +95,7 @@ module.exports = {
 }
 
 async function play(serverQueue, client, player) {
+    let son;
     switch (serverQueue.loopType) {
         case 0:
             serverQueue.songs.shift()
@@ -104,7 +104,7 @@ async function play(serverQueue, client, player) {
             //just repeating the same track over and over again, no need to touch the queue
             break;
         case 2:
-            let son = serverQueue.songs[0]
+            son = serverQueue.songs[0]
             serverQueue.songs.shift()
             serverQueue.songs = [...serverQueue.songs, son]
             break;

@@ -9,7 +9,6 @@ module.exports = {
                 if (isNaN(msg.args[0])) return await msg.react("🛑")
                 if (msg.args[0] === 0) return await msg.react("🛑")
                 if (!serverQueue.songs[msg.args[0]]) return await msg.react("🛑")
-                const s = serverQueue.songs[msg.args[0]]
                 delete serverQueue.songs[msg.args[0]]
                 return await msg.react("💮")
         }

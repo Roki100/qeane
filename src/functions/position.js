@@ -3,5 +3,5 @@ module.exports = (pos) => {
     const seconds = pos % 60
     const hours = Math.floor(pos / 3600)
     const minutes = Math.floor(pos / 60)
-    return `${hours ? `${hours}:` : ""}${minutes}:${seconds}`
+    return `${hours ? `${hours}:` : ""}${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
 }

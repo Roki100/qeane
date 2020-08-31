@@ -34,11 +34,10 @@ module.exports = {
             let serverQueue = client.queue.get(msg.guild.id)
             serverQueue.songs.push(data.tracks[0])
             let track = data.tracks[0]
-            time = client.functions.duration(track.info.length)
             msg.reply("", {
                 embed: {
                     color: client.functions.randomColor(),
-                    title: "Radie Station added",
+                    title: "Radio Station added",
                     description: `Name: **${track.info.title}**\nURL: ${track.info.uri}`
                 }
             })
@@ -84,6 +83,7 @@ module.exports = {
 }
 
 async function play(serverQueue, client, player) {
+    let son;
     switch (serverQueue.loopType) {
         case 0:
             serverQueue.songs.shift()
@@ -92,7 +92,7 @@ async function play(serverQueue, client, player) {
             //just repeating the same track over and over again, no need to touch the queue
             break;
         case 2:
-            let son = serverQueue.songs[0]
+            son = serverQueue.songs[0]
             serverQueue.songs.shift()
             serverQueue.songs = [...serverQueue.songs, son]
             break;
