@@ -1,5 +1,5 @@
 module.exports = async (client, msg) => {
-  if (msg.content === '' || !msg.guild || msg.webhookID || msg.system || msg.author.bot) return;
+  if (msg.content === '' || !msg.guild || msg.webhookID || msg.system || !msg.author || msg.author.bot) return;
   if (!client.db) return;
 
   let prefix = client.db.get(`${msg.guild.id}.prefix`) || client.config.prefix
