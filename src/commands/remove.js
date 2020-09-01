@@ -10,7 +10,7 @@ module.exports = {
                 if (msg.args[0] === 0) return await msg.react("🛑")
                 if (!serverQueue.songs[msg.args[0]]) return await msg.react("🛑")
                 delete serverQueue.songs[msg.args[0]]
-                serverQueue = serverQueue.filter(s => s)
+                serverQueue.songs = serverQueue.songs.filter(s => s)
                 return await msg.react("💮")
         }
 }
