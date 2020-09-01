@@ -5,6 +5,7 @@
   ],
   "prefix": "qeane",
   "token": "your bot token",
+  "shards": "your shard count -1",
   "node": {
     "name": "Lavalink Node",
     "host": "localhost",
