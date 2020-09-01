@@ -28,21 +28,25 @@ module.exports = {
                 name: "Links",
                 value: `[Invite](https://discord.com/api/oauth2/authorize?client_id=742670668646055967&permissions=3238918&scope=bot) | [Support Server](https://discord.gg/nXg4Yh7) | [Vote](https://top.gg/bot/742670668646055967/vote) | [GitHub](https://github.com/lumap/qeane)`
             })
-            await msg.reply({
-                embed: {
-                    color: client.functions.randomColor(),
-                    author: {
-                        icon_url: "https://cdn.discordapp.com/avatars/742670668646055967/1d3fe1524721d8ea17e12f2df2c0aa46.png?size=2048",
-                        name: "Qeane's help menu"
-                    },
-                    description: "This is a list of my commands. To know something about a specific command, do ``help [command name]``.",
-                    fields: fields,
-                    footer: {
-                        text: "Created by Lumap#0001. Thanks to all contributors for their help^^"
+            try {
+                await msg.author.send({
+                    embed: {
+                        color: client.functions.randomColor(),
+                        author: {
+                            icon_url: "https://cdn.discordapp.com/avatars/742670668646055967/1d3fe1524721d8ea17e12f2df2c0aa46.png?size=2048",
+                            name: "Qeane's help menu"
+                        },
+                        description: "This is a list of my commands. To know something about a specific command, do ``help [command name]``.",
+                        fields: fields,
+                        footer: {
+                            text: "Created by Lumap#0001. Thanks to all contributors for their help^^"
+                        }
                     }
-                }
-            })
-
+                })
+                await msg.reply("The help command has been sent in your DMs!")
+            } catch {
+                await msg.reply("Looks like your DMs are closed! Please open them and retry.")
+            }
         } else {
             let commandName = msg.args[0]
             let command = client.commands.get(commandName) || client.commands.get(client.aliases.get(msg.args[0]))
