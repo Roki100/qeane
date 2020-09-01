@@ -1,5 +1,5 @@
 module.exports = () => {
-    const { Structures, Client, Collection } = require("discord.js"); // or discord.js-light
+    const { Structures } = require("discord.js-light"); // or discord.js-light
 
     // extend the Message class and add a new message.send() method that automatically checks for the existence of previous responses
     Structures.extend("Message", M => class Message extends M {
@@ -36,4 +36,6 @@ module.exports = () => {
             return sent;
         }
     });
+
+    console.log("==SETUP== editedMessages succesfully loaded!")
 }

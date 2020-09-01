@@ -70,4 +70,25 @@ module.exports = function (client) {
         client.events.msg(client, newMsg)
     })
 
+    client.on("shardDisconnect", (e, id) => {
+        console.log(`[${new Date().toISOString()}][Shard ${id}] Died and will not reconnect. Reason:`, e);
+        client.logs.send(`[${new Date().toISOString()}][Shard ${id}] Died and will not reconnect. Reason: ${e}`,)
+    });
+    client.on("shardError", (e, id) => {
+        console.log(`[${new Date().toISOString()}][Shard ${id}] Error`, e);
+        client.logs.send(`[${new Date().toISOString()}][Shard ${id}] Error: ${e}`,)
+    });
+    client.on("shardReconnecting", id => {
+        console.log(`[${new Date().toISOString()}][Shard ${id}] Reconnecting`);
+        client.logs.send(`[${new Date().toISOString()}][Shard ${id}] Reconnecting`)
+    });
+    client.on("shardResume", (id, evts) => {
+        console.log(`[${new Date().toISOString()}][Shard ${id}] Resumed`); // evts are useless
+        client.logs.send(`[${new Date().toISOString()}][Shard ${id}] Resumed`)
+    });
+    client.on("shardReady", (id, evts) => {
+        console.log(`[${new Date().toISOString()}][Shard ${id}] Started`); // evts are useless
+        client.logs.send(`[${new Date().toISOString()}][Shard ${id}] Started`)
+    });
+
 }

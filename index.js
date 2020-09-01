@@ -29,20 +29,20 @@ class Qeane extends Client {
         startBot(this)
     }
 
-    start() {
+    start(token) {
         this._setupShoukakuEvents();
         this._setupClientEvents();
+        this.login(token)
     }
 
 }
 
 new Qeane({
     disableMentions: "everyone",
-    token: require('./config.json').token,
     ws: {
         intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES']
     },
     enablePermissions: true,
     shards: [0, 1]
 })
-    .start()
+    .start(require('./config.json').token)
