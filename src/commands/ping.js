@@ -4,6 +4,6 @@ module.exports = {
     name: 'ping',
     usage: "ping",
     async execute(client, msg) {
-        await msg.send(`Pong! **${client.ws.ping}**ms!`)
+        await msg.reply(`Pong! **${client.ws.ping}**ms!`)
     }
 }

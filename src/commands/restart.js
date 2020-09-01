@@ -7,7 +7,7 @@ module.exports = {
   ownerOnly: true,
   usage: "restart",
   async execute(_client, msg) {
-    msg.send(`Restarting Qeane...`).then(() => {
+    msg.reply(`Restarting Qeane...`).then(() => {
       exec('pm2 restart Qeane', function () { });
     });
   },

@@ -28,7 +28,7 @@ module.exports = {
                 name: "Links",
                 value: `[Invite](https://discord.com/api/oauth2/authorize?client_id=742670668646055967&permissions=3238918&scope=bot) | [Support Server](https://discord.gg/nXg4Yh7) | [Vote](https://top.gg/bot/742670668646055967/vote) | [GitHub](https://github.com/lumap/qeane)`
             })
-            await msg.send({
+            await msg.reply({
                 embed: {
                     color: client.functions.randomColor(),
                     author: {
@@ -47,7 +47,7 @@ module.exports = {
             let commandName = msg.args[0]
             let command = client.commands.get(commandName) || client.commands.get(client.aliases.get(msg.args[0]))
             if (!command || command.ownerOnly && !client.config.owners.includes(msg.author.id)) return await msg.send(`Command not found!`)
-            await msg.send(``, {
+            await msg.reply({
                 embed: {
                     color: client.functions.randomColor(),
                     author: {

@@ -8,14 +8,14 @@ module.exports = {
     name: "radio",
     usage: "radio <radio station name>",
     async execute(client, msg) {
-        if (!client.db.get("votes." + msg.author.id) || client.db.get("votes." + msg.author.id) < Date.now()) return msg.send("In order to use this command, you need to vote for me! https://top.gg/bot/742670668646055967/vote")
+        if (!client.db.get("votes." + msg.author.id) || client.db.get("votes." + msg.author.id) < Date.now()) return msg.reply("In order to use this command, you need to vote for me! https://top.gg/bot/742670668646055967/vote")
         const { channel } = msg.member.voice
-        if (!channel) return await msg.send(`You need to be connected to a voice channel to do that!`)
+        if (!channel) return await msg.reply(`You need to be connected to a voice channel to do that!`)
         await channel.fetch()
         if (client.queue.get(msg.guild.id)) {
-            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return await msg.send(`You need to be in my voice channel to do that!`)
+            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return await msg.reply(`You need to be in my voice channel to do that!`)
         }
-        if (!msg.args[0]) return await msg.send(`Usage: ${this.usage}`)
+        if (!msg.args[0]) return await msg.reply(`Usage: ${this.usage}`)
         const node = client.shoukaku.getNode();
         const filter = {
             limit: 1,
@@ -28,14 +28,14 @@ module.exports = {
             str += item.url;
         })
         //gonna make this async so it happens in order
-        if (str.length === 0) return msg.send(`No radio found!`)
+        if (str.length === 0) return msg.reply(`No radio found!`)
         let data = await node.rest.resolve(str)
-        if (!data) return await msg.send(`No radio found!`)
+        if (!data) return await msg.reply(`No radio found!`)
         if (client.shoukaku.getPlayer(msg.guild.id)) {
             let serverQueue = client.queue.get(msg.guild.id)
             serverQueue.songs.push(data.tracks[0])
             let track = data.tracks[0]
-            msg.send({
+            msg.reply({
                 embed: {
                     color: client.functions.randomColor(),
                     title: "Radio Station added",

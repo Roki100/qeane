@@ -4,6 +4,6 @@ module.exports = {
     name: 'vote',
     usage: "vote",
     async execute(_client, msg) {
-        await msg.send(`https://top.gg/bot/742670668646055967/vote`)
+        await msg.reply(`https://top.gg/bot/742670668646055967/vote`)
     }
 }

@@ -16,12 +16,12 @@ module.exports = {
         if (!evaled.toString().includes("```js\n")) options = { code: "js" }
       }
 
-      await msg.send(evaled, options)
+      await msg.reply(evaled, options)
 
 
     } catch (err) {
       console.log(err)
-      await msg.send(err)
+      await msg.reply(err)
     }
 
   },

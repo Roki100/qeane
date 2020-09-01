@@ -5,6 +5,6 @@ module.exports = {
     name: 'github',
     usage: "github",
     async execute(_client, msg) {
-        await msg.send(`https://github.com/lumap/qeane`)
+        await msg.reply(`https://github.com/lumap/qeane`)
     }
 }

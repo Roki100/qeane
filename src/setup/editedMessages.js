@@ -1,7 +1,6 @@
 module.exports = () => {
-    const { Structures } = require("discord.js-light"); // or discord.js-light
+    const { Structures } = require("discord.js-light");
 
-    // extend the Message class and add a new message.send() method that automatically checks for the existence of previous responses
     Structures.extend("Message", M => class Message extends M {
         async send(content, options) {
             if (typeof content === "string") {
@@ -13,7 +12,6 @@ module.exports = () => {
             let sent;
             let previous = this.client.responses.get(this.id);
             if (previous) {
-                // use the forge method if using discord.js-light else fallback to fetching for regular discord.js
                 let msg = typeof this.channel.messages.forge === "function" ? this.channel.messages.forge(previous.id) : await this.channel.messages.fetch(previous.id, false);
                 if (previous.attachments || options.files) {
                     await msg.delete().catch(() => { });
@@ -35,7 +33,19 @@ module.exports = () => {
             });
             return sent;
         }
+        async reply(content, options) {
+            if (typeof content === "string") {
+                if (!options) { options = {}; }
+                content = `${this.author.tag}: ${content}`
+            } else {
+                options = content;
+                content = `${this.author.tag}: ${options.content ?? ""}`
+            }
+
+            return await this.send(content, options)
+        }
     });
+
 
     console.log("==SETUP== editedMessages succesfully loaded!")
 }
