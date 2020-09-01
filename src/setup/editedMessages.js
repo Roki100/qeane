@@ -39,7 +39,7 @@ module.exports = () => {
                 content = `${this.author.tag}: ${content}`
             } else {
                 options = content;
-                content = `${this.author.tag}: ${options.content ?? ""}`
+                content = `${this.author.tag}: ${options.content ? options.content : ""}`
             }
 
             return await this.send(content, options)
