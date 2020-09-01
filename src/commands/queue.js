@@ -17,7 +17,7 @@ module.exports = {
 
         let queueemb = {
             embed: {
-                description: `Current: \n[${serverQueue.songs[0].info.title}](${serverQueue.songs[0].info.uri}) ([Link to Now Playing message](${serverQueue.linkToNpmsg}))\n\nIncoming:\n${output.join('')}`,
+                description: `**__Current:__** \n[${serverQueue.songs[0].info.title}](${serverQueue.songs[0].info.uri})\n\n**__Incoming:__**\n${output.join('')}`,
                 footer: {}
             }
         }
