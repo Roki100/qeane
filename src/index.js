@@ -40,6 +40,7 @@ module.exports = function (client) {
         try {
             client.setup.client(client)
             client.setup.sliceEvery()
+            client.setup.editedMessages()
             if (client.user.id === "742670668646055967") {
                 client.setup.dbl(client)
                 client.setup.webhooks(client)
@@ -65,5 +66,8 @@ module.exports = function (client) {
         client.events.msg(client, msg)
     });
 
+    client.on("messageUpdate", async (_oldMsg, newMsg) => {
+        client.events.msg(client, newMsg)
+    })
 
 }

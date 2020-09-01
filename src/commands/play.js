@@ -6,12 +6,12 @@ module.exports = {
     usage: "play <song url/name/playlist url>",
     async execute(client, msg) {
         const { channel } = msg.member.voice
-        if (!channel) return await msg.reply(`You need to be connected to a voice channel to do that!`)
+        if (!channel) return await msg.send(`You need to be connected to a voice channel to do that!`)
         await channel.fetch()
         if (client.queue.get(msg.guild.id)) {
-            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return await msg.reply(`You need to be in my voice channel to do that!`)
+            if (client.queue.get(msg.guild.id).voiceChannel.id !== channel.id) return await msg.send(`You need to be in my voice channel to do that!`)
         }
-        if (!msg.args[0]) return await msg.reply(`Usage: ${this.usage}`)
+        if (!msg.args[0]) return await msg.send(`Usage: ${this.usage}`)
         const node = client.shoukaku.getNode();
         let data;
         if (require('is-a-url')(msg.args.join(' '))) {
@@ -19,13 +19,13 @@ module.exports = {
         } else {
             data = await node.rest.resolve(msg.args.join(' '), "youtube")
         }
-        if (!data) return await msg.reply(`It seems that I can not find that song, sorry :(`);
+        if (!data) return await msg.send(`It seems that I can not find that song, sorry :(`);
         if (client.shoukaku.getPlayer(msg.guild.id)) {
             let serverQueue = client.queue.get(msg.guild.id)
             switch (data.type) {
                 case "PLAYLIST":
                     serverQueue.songs.push(...data.tracks)
-                    await msg.reply(``, {
+                    await msg.send(``, {
                         embed: {
                             color: client.functions.randomColor(),
                             title: "Playlist added",
@@ -36,7 +36,7 @@ module.exports = {
                 case "SEARCH":
                 case "TRACK":
                     serverQueue.songs.push(data.tracks[0])
-                    await msg.reply(``, {
+                    await msg.send(``, {
                         embed: {
                             color: client.functions.randomColor(),
                             title: "Track added",

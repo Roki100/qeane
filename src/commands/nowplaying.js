@@ -6,7 +6,7 @@ module.exports = {
     usage: "nowplaying",
     async execute(client, msg) {
         let serverQueue = client.queue.get(msg.guild.id)
-        if (!serverQueue) return await msg.reply(`Nothing is playing here!`)
-        await msg.reply("", serverQueue.npmsg.embeds[0])
+        if (!serverQueue) return await msg.send(`Nothing is playing here!`)
+        await msg.send(serverQueue.npmsg.embeds[0])
     }
 }

@@ -4,6 +4,6 @@ module.exports = {
     name: 'support',
     usage: "support",
     async execute(_client, msg) {
-        msg.reply(`https://discord.gg/nXg4Yh7`)
+        msg.send(`https://discord.gg/nXg4Yh7`)
     }
 }

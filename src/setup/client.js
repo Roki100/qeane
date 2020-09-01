@@ -14,6 +14,7 @@ module.exports = function (client) {
   client.commands = new Discord.Collection()
   client.version = require('../../package.json')["last-update"]
   client.aliases = new Discord.Collection()
+  client.responses = new Discord.Collection()
 
   const commandFiles = fs
     .readdirSync(`./src/commands`)

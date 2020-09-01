@@ -7,7 +7,6 @@ module.exports = async (client) => {
     dbl.webhook.on('vote', async vote => {
         client.logs.send(`User with id ${vote.user} just voted!`)
         client.db.set(`votes.${vote.user}`, Date.now() + 43200000)
-        //if (!client.db.get(msg.author.id) || client.db.get(msg.author.id)< Date.now()) return msg.reply("In order to use this command, you need to vote for me! https://top.gg/bot/742670668646055967/vote")
         let user = client.users.cache.get(vote.user) || await client.users.fetch(vote.user)
         await user.send("Thanks you for voting for Qeane :3")
     })

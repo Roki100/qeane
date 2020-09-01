@@ -16,7 +16,7 @@ module.exports = {
     usage: "stats",
     async execute(client, msg) {
 
-        let m = await msg.reply(``, { embed: { description: "Collecting stats, please wait..." } })
+        let m = await msg.send(``, { embed: { description: "Collecting stats, please wait..." } })
         let totalSeconds = (client.uptime / 1000);
         let days = Math.floor(totalSeconds / 86400);
         let hours = Math.floor(totalSeconds / 3600);

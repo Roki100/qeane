@@ -25,6 +25,6 @@ module.exports = {
             queueemb.embed.footer.text = `${serverQueue.songs.length - 11} more songs...`
         }
 
-        await msg.reply(``, queueemb)
+        await msg.send(``, queueemb)
     }
 }

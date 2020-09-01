@@ -10,6 +10,6 @@ module.exports = {
             string += `${guild.name} (${guild.id})\n`;
         })
         await msg.author.send(string)
-        await msg.reply(`Server list sent in DM!`);
+        await msg.send(`Server list sent in DM!`);
     },
 } 
