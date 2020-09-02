@@ -14,6 +14,7 @@ module.exports = {
                 let o = serverQueue.songs[msg.args[0]]
                 delete serverQueue.songs[msg.args[0]]
                 serverQueue.songs.splice(msg.args[1], 0, o)
+                serverQueue.songs = serverQueue.songs.filter(s => s)
                 await msg.react("👍")
         }
 } 
